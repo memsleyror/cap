@@ -2,8 +2,8 @@
 	<!---list of all user companies --->
 		<cffunction name="list" returntype="query" hint="list all user companies" > 
 			<cfquery name="usercompanies">
-				SELECT usercompany_id, user_id, company_id
-				FROM usercompany
+				SELECT usercompany_id, usercompany.user_id, usercompany.company_id, company.company_name, users.user_lastname
+				FROM (usercompany INNER JOIN users ON usercompany.user_id = users.user_id) INNER JOIN company ON usercompany.company_id = company.company_id
 				ORDER BY usercompany_id
 			</cfquery>
 			<cfreturn usercompanies>	 
