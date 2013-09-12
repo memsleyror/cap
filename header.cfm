@@ -11,3 +11,4 @@
 	| <a href="teams.cfm">Teams</a>
 	| <a href="usercompany.cfm">User-Company</a>
 	| <a href="userproject.cfm">User-Project</a>
+	| <a href="userteam.cfm">User-Team</a>
