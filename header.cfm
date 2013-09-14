@@ -9,6 +9,8 @@
 	| <a href="milestones.cfm">Milestones</a>
 	| <a href="companies.cfm">Companies</a>
 	| <a href="teams.cfm">Teams</a>
+	| <a href="versions.cfm">Versions</a>
 	| <a href="usercompany.cfm">User-Company</a>
 	| <a href="userproject.cfm">User-Project</a>
 	| <a href="userteam.cfm">User-Team</a>
+	| <a href="caseforchange.cfm">Case for Change</a>
