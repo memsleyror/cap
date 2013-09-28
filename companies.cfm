@@ -22,5 +22,5 @@
 	
 </table>	
 
-<!---page header --->
+<!---page footer --->
 <cfinclude template="footer.cfm">
