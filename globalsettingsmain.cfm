@@ -1,43 +1,12 @@
 ﻿<!--- INCLUDE HEADER                                                               --->
-<cfset session.menuTracker.menuTitle = "">
-<cfset session.menuTracker.subMenuTitle = "">
+<cfset session.menuTracker.menuTitle = "Global Settings">
+<cfset session.menuTracker.subMenuTitle = "Global Settings Menu">
 
 <cfinclude template="header.cfm">
 
 
 
-<!--- BREADCRUMB                                                                   --->
-				<div class="main-content">
-					<div class="breadcrumbs" id="breadcrumbs">
-						<script type="text/javascript">
-							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
-						</script>
 
-						<ul class="breadcrumb">
-							<li>
-								<i class="icon-home home-icon"></i>
-								<a href="#">Kronos TAP Project</a>
-							</li>
-
-							<!--- 
-							<li>
-								<a href="#"></a>
-							</li>
-							--->
-							
-							<li class="active">Global Settings</li>
-						</ul><!-- .breadcrumb -->
-							
-					</div>
-					
-<!--- PAGE HEADER                                                                   --->
-
-					<div class="page-content">
-						<div class="page-header">
-							<h1>
-								Global Settings
-							</h1>
-						</div><!-- /.page-header -->
 
 <!--- CONTENT                                                                       --->
 

@@ -388,7 +388,7 @@
 							</a>
 						</li>
 
-				<cfif session.menuTracker.menuTitle is "projectsetup">
+				<cfif session.menuTracker.menuTitle is "Project Setup">
 						<li class="active open">
 				<cfelse>			
 						<li>
@@ -401,7 +401,7 @@
 							</a>
 
 							<ul class="submenu">
-								<cfif session.menuTracker.subMenuTitle is "projects">
+								<cfif session.menuTracker.subMenuTitle is "Projects">
 									<li class="active">
 								<cfelse>
 									<li>
@@ -412,7 +412,7 @@
 									</a>
 								</li>
 
-								<cfif session.menuTracker.subMenuTitle is "milestones">
+								<cfif session.menuTracker.subMenuTitle is "Milestones">
 									<li class="active">
 								<cfelse>
 									<li>
@@ -423,7 +423,7 @@
 									</a>
 								</li>
 
-								<cfif session.menuTracker.subMenuTitle is "roles">
+								<cfif session.menuTracker.subMenuTitle is "Roles">
 									<li class="active">
 								<cfelse>
 									<li>
@@ -434,7 +434,7 @@
 									</a>
 								</li>
 
-								<cfif session.menuTracker.subMenuTitle is "userproject">
+								<cfif session.menuTracker.subMenuTitle is "User-Project">
 									<li class="active">
 								<cfelse>
 									<li>
@@ -445,7 +445,7 @@
 									</a>
 								</li>
 
-								<cfif session.menuTracker.subMenuTitle is "teams">
+								<cfif session.menuTracker.subMenuTitle is "Teams">
 									<li class="active">
 								<cfelse>
 									<li>
@@ -456,7 +456,7 @@
 									</a>
 								</li>
 								
-								<cfif session.menuTracker.subMenuTitle is "userteam">
+								<cfif session.menuTracker.subMenuTitle is "User-Team">
 									<li class="active">
 								<cfelse>
 									<li>
@@ -467,7 +467,7 @@
 									</a>
 								</li>
 								
-								<cfif session.menuTracker.subMenuTitle is "stakeholdergroups">
+								<cfif session.menuTracker.subMenuTitle is "Stakeholder Groups">
 									<li class="active">
 								<cfelse>
 									<li>
@@ -478,7 +478,7 @@
 									</a>
 								</li>
 								
-								<cfif session.menuTracker.subMenuTitle is "userstakeholdergroup">
+								<cfif session.menuTracker.subMenuTitle is "User-Stakeholder Group">
 									<li class="active">
 								<cfelse>
 									<li>
@@ -536,7 +536,7 @@
 							</ul>
 						</li>
 
-						<cfif session.menuTracker.menuTitle is "preparephase">
+						<cfif session.menuTracker.menuTitle is "Prepare Phase">
 							<li class="active open">
 						<cfelse>			
 							<li>
@@ -550,7 +550,7 @@
 							</a>
 
 							<ul class="submenu">
-								<cfif session.menuTracker.subMenuTitle is "caseforchange">
+								<cfif session.menuTracker.subMenuTitle is "Case for Change">
 									<li class="active">
 								<cfelse>
 									<li>
@@ -561,7 +561,7 @@
 									</a>
 								</li>
 
-								<cfif session.menuTracker.subMenuTitle is "stakeholderanalysis">
+								<cfif session.menuTracker.subMenuTitle is "Stakeholder Analysis">
 									<li class="active">
 								<cfelse>
 									<li>
@@ -759,3 +759,40 @@
 						try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
 					</script>
 				</div>
+				
+<!--- BREADCRUMB                                                                   --->
+				<div class="main-content">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+								<a href="#">Must Refactor</a>
+							</li>
+
+							
+							<li>
+								<a href="#"><cfoutput>#session.menuTracker.menuTitle#</cfoutput>
+								</a>
+							</li>
+							
+							
+							<li class="active"><cfoutput>#session.menuTracker.subMenuTitle#</cfoutput></li>
+						</ul><!-- .breadcrumb -->
+							
+					</div>
+
+<!--- BREADCRUMB END                                                                --->
+
+					
+<!--- PAGE HEADER                                                                   --->
+
+					<div class="page-content">
+						<div class="page-header">
+							<h1>
+								<cfoutput>#session.menuTracker.subMenuTitle#</cfoutput>
+							</h1>
+						</div><!-- /.page-header -->

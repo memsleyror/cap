@@ -4,45 +4,14 @@
 <cfinvoke component="userproject" method="list" returnvariable="userprojects">
 
 <!--- INCLUDE HEADER                                                               --->
-<cfset session.menuTracker.menuTitle = "projectsetup">
-<cfset session.menuTracker.subMenuTitle = "userproject">
+<cfset session.menuTracker.menuTitle = "Project Setup">
+<cfset session.menuTracker.subMenuTitle = "User-Project">
 
 <cfinclude template="header.cfm">
 
 
 
-<!--- BREADCRUMB                                                                   --->
-				<div class="main-content">
-					<div class="breadcrumbs" id="breadcrumbs">
-						<script type="text/javascript">
-							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
-						</script>
 
-						<ul class="breadcrumb">
-							<li>
-								<i class="icon-home home-icon"></i>
-								<a href="#">Kronos TAP Project</a>
-							</li>
-
-							
-							<li>
-								<a href="#">Project Setup</a>
-							</li>
-							
-							
-							<li class="active">User Project</li>
-						</ul><!-- .breadcrumb -->
-							
-					</div>
-					
-<!--- PAGE HEADER                                                                   --->
-
-					<div class="page-content">
-						<div class="page-header">
-							<h1>
-								User Project
-							</h1>
-						</div><!-- /.page-header -->
 
 <!--- CONTENT                                                                       --->
 

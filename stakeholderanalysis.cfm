@@ -4,45 +4,12 @@
 <cfinvoke component="stakeholderanalysis" method="list" returnvariable="stakeholderanalyses">
 
 <!--- INCLUDE HEADER                                                               --->
-<cfset session.menuTracker.menuTitle = "preparephase">
-<cfset session.menuTracker.subMenuTitle = "stakeholderanalysis">
+<cfset session.menuTracker.menuTitle = "Prepare Phase">
+<cfset session.menuTracker.subMenuTitle = "Stakeholder Analysis">
 
 <cfinclude template="header.cfm">
 
 
-
-<!--- BREADCRUMB                                                                   --->
-				<div class="main-content">
-					<div class="breadcrumbs" id="breadcrumbs">
-						<script type="text/javascript">
-							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
-						</script>
-
-						<ul class="breadcrumb">
-							<li>
-								<i class="icon-home home-icon"></i>
-								<a href="#">Kronos TAP Project</a>
-							</li>
-
-							
-							<li>
-								<a href="#">Prepare Phase</a>
-							</li>
-							
-							
-							<li class="active">Stakeholder Analysis</li>
-						</ul><!-- .breadcrumb -->
-							
-					</div>
-					
-<!--- PAGE HEADER                                                                   --->
-
-					<div class="page-content">
-						<div class="page-header">
-							<h1>
-								Stakeholder Analysis
-							</h1>
-						</div><!-- /.page-header -->
 
 <!--- CONTENT                                                                       --->
 
