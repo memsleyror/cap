@@ -14,7 +14,7 @@
 		<cffunction name="get" returntype="query" hint="get user details">
 			<cfargument name="user_id" type="numeric" required="yes" hint="user ID" >
 			<cfquery name="user">
-				SELECT user_id, user_login, user_password, user_firstname, user_lastname, user_email, role_id
+				SELECT user_id, user_login, user_password, user_firstname, user_lastname, user_email, role_id, user_default_project_id
 				FROM users
 				WHERE user_id=#ARGUMENTS.user_id#
 			</cfquery>	 
@@ -31,17 +31,19 @@
 			<cfargument name="user_lastname" type="string" required="yes" hint="user last name">
 			<cfargument name="user_email" type="string" required="yes" hint="user email">	
 			<cfargument name="role_id" type="numeric" required="yes" hint="user role ID">
+			<cfargument name="user_default_project_id" type="numeric" required="yes" hint="user def proj ID">
 			
 			
 			<!---insert user --->
 			<cfquery>
-				INSERT INTO users(user_login, user_password, user_firstname, user_lastname, user_email, role_id)
+				INSERT INTO users(user_login, user_password, user_firstname, user_lastname, user_email, role_id, user_default_project_id)
 				VALUES('#Trim(ARGUMENTS.user_login)#',
 						'#Trim(ARGUMENTS.user_password)#',
 						'#Trim(ARGUMENTS.user_firstname)#',
 						'#Trim(ARGUMENTS.user_lastname)#',
 						'#Trim(ARGUMENTS.user_email)#',
-						#ARGUMENTS.role_id#
+						#ARGUMENTS.role_id#,
+						#ARGUMENTS.user_default_project_id#
 				)
 			</cfquery>	
 			<cfreturn true>
@@ -91,5 +93,27 @@
 			</cfquery>	
 			<cfreturn roles>	
 		</cffunction>
+		
+		<!---get projects --->
+		<cffunction name="getProjects" returntype="query" hint="get projects">
+			<cfquery name="projects">
+				SELECT project_id, project_name
+				FROM projects
+				ORDER BY project_id
+			</cfquery>	
+			<cfreturn projects>	
+		</cffunction>
+
+		<!---get user projects 
+		<cffunction name="getUserProjects" returntype="query" hint="get user projects">
+			<cfquery name="userProjects">
+				SELECT userproject_id, userproject.user_id, userproject.project_id, projects.project_name
+				FROM (userproject INNER JOIN users ON userproject.user_id = users.user_id) INNER JOIN projects ON userproject.project_id = projects.project_id
+				WHERE userproject_id=#session.auth.user_id#
+			</cfquery>	
+			<cfreturn userProjects>	
+		</cffunction>
+		--->
+
 
 </cfcomponent>
