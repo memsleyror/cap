@@ -1,26 +1,32 @@
 ﻿
+
+<!--- breadcrumb settings                                                               --->
+<cfset session.menuTracker.menuTitle = "Global Settings">
+<cfset session.menuTracker.subMenuTitle = "My Profile">
+
+
 <!---check if user ID was provided --->
 <!---if yes, edit, else add --->
 
-<cfset EditMode=IsDefined("URL.user_id")>
+<cfset EditMode=IsDefined("session.auth.user_id")>
 
 <!---if edit mode then get row to edit --->
 <cfif EditMode>
 	
 	<!---get the user record --->
-	<cfinvoke component="users" method="get" user_id="#URL.user_id#" returnvariable="user">
+	<cfinvoke component="users" method="get" user_id="#session.auth.user_id#" returnvariable="user">
 	
 	<!---save to variables --->
 	<cfset user_login=Trim(user.user_login)>
 	<cfset user_password=Trim(user.user_password)>
 	<cfset user_firstname=Trim(user.user_firstname)>
 	<cfset user_lastname=Trim(user.user_lastname)>
-	<cfset user_email=Trim(user.user_email)>	
+	<cfset user_email=Trim(user.user_email)>
 	<cfset role_id=user.role_id>
 	<cfset user_default_project_id=user.user_default_project_id>
 	
 	<!---form text --->
-	<cfset FormTitle="Update a User">
+	<cfset FormTitle="Update My Profile">
 	<cfset ButtonText="Update">
 	
 <cfelse>
@@ -44,8 +50,10 @@
 <!---get roles --->
 <cfinvoke component="users" method="getRoles" returnvariable="roles"> 
 
-<!---get projects --->
-<cfinvoke component="users" method="getProjects" returnvariable="projects"> 
+<!---get user projects 
+<cfinvoke component="users" method="getUserProjects" returnvariable="userProjects"> 
+--->
+
 
 <!---page header --->
 <cfinclude template="header.cfm">
@@ -59,6 +67,9 @@
 		<input type="hidden" name="user_id" value="#user.user_id#">
 	</cfoutput>
 </cfif>		
+
+
+
 
 <table align="center">
 	<tr>
@@ -102,11 +113,9 @@
 	<!--- 
 	<tr>
 		<td>Default Project</td>
-		<td><cfselect name="user_default_project_id" query="projects" value="project_id" display="project_name" selected="#VARIABLES.user_default_project_id#"></cfselect></td>
+		<td><cfselect name="project_id" query="userProjects" value="project_id" display="project_name"   selected="#VARIABLES.project_id#" ></cfselect></td>
 	</tr>
 	--->
-	
-	<input type="hidden" name="user_default_project_id" value="5">
 	
 	<tr>
 		<td colspan="2" align="center">
@@ -122,6 +131,7 @@
 
 <!---page footer --->
 <cfinclude template="footer.cfm">
+
 
 
 

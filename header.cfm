@@ -302,7 +302,7 @@
 								</li>
 
 								<li>
-									<a href="#">
+									<a href="myprofile.cfm">
 										<i class="icon-user"></i>
 										Profile
 									</a>
@@ -311,7 +311,7 @@
 								<li class="divider"></li>
 
 								<li>
-									<a href="#">
+									<a href="logout.cfm">
 										<i class="icon-off"></i>
 										Logout
 									</a>
@@ -768,9 +768,10 @@
 						</script>
 
 						<ul class="breadcrumb">
+							
 							<li>
 								<i class="icon-home home-icon"></i>
-								<a href="#">Must Refactor</a>
+								<!--- <a href="#">Must Refactor</a> --->
 							</li>
 
 							

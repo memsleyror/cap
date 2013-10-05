@@ -19,7 +19,7 @@
 	<cfinvokeargument name="user_lastname" value="#Trim(FORM.user_lastname)#">
 	<cfinvokeargument name="user_email" value="#Trim(FORM.user_email)#">
 	<cfinvokeargument name="role_id" value="#Int(FORM.role_id)#">
-	
+	<!--- <cfinvokeargument name="user_default_project_id" value="#Int(FORM.user_default_project_id)#">--->
 	
 	
 </cfinvoke>
