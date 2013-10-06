@@ -789,11 +789,13 @@
 <!--- BREADCRUMB END                                                                --->
 
 					
-<!--- PAGE HEADER                                                                   --->
+<!--- PAGE HEADER  --->                                                                 
 
 					<div class="page-content">
+						<!---
 						<div class="page-header">
 							<h1>
 								<cfoutput>#session.menuTracker.subMenuTitle#</cfoutput>
 							</h1>
-						</div><!-- /.page-header -->
+						</div><!-- /.page-header --> --->	
+					

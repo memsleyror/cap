@@ -41,6 +41,7 @@
 
 		<script src="assets/js/jquery.dataTables.min.js"></script>
 		<script src="assets/js/jquery.dataTables.bootstrap.js"></script>
+		<script src="assets/js/date-time/daterangepicker.min.js"></script>
 
 		<!-- ace scripts -->
 
@@ -67,6 +68,10 @@
 						$(this).closest('tr').toggleClass('selected');
 					});
 						
+				});
+			
+				$('.date-picker').datepicker({autoclose:true}).next().on(ace.click_event, function(){
+					$(this).prev().focus();
 				});
 			
 			
