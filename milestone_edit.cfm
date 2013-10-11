@@ -38,9 +38,29 @@
 <!---get projects --->
 <cfinvoke component="milestones" method="getProjects" returnvariable="projects"> 
 
-
 <!---page header --->
 <cfinclude template="header.cfm">
+
+<div class="page-header">
+	<h1>
+		<cfoutput>#session.menuTracker.subMenuTitle#</cfoutput>
+		<small>
+			<i class="icon-double-angle-right"></i>
+			<cfoutput>#FormTitle#</cfoutput>
+		</small>
+	</h1>
+</div><!-- /.page-header -->
+
+<!--- sets up beginning of form structure --->
+<div class="col-sm-6">
+		<div class="widget-box">
+			<div class="widget-header">
+				<h4><cfoutput>#FormTitle#</cfoutput></h4>
+			</div>
+
+			<div class="widget-body">
+				<div class="widget-main no-padding">
+<!--- closes beginning of form structure --->	
 
 <!---add/update user form --->
 <cfform action="milestone_process.cfm">
@@ -52,49 +72,55 @@
 	</cfoutput>
 </cfif>		
 
-<table align="center">
+<fieldset>
+<table>
+	
 	<tr>
-		<th colspan="2">
-			<cfoutput>
-				#FormTitle#
-			</cfoutput>	
-		</th>
+		<td width = "150"><label> Milestone Name </label></td>
+		<td><cfinput type="text" name="milestone_name" value="#milestone_name#" id="form-field-1" message="milestone name is required" required="yes" validateAt="onSubmit,onServer" placeholder="Milestone Name"  size="30" maxlength="100"></td>
 	</tr>
 	
 	<tr>
-		<td>Milestone Name</td>
-		<td><cfinput type="text" name="milestone_name" value="#milestone_name#" message="milestone name is required" required="yes" validateAt="onSubmit,onServer" size="50" maxlength="100"></td>
+		<td width = "150"><label> Milestone Description </label></td>
+		<td><cfinput type="text" name="milestone_desc" value="#milestone_desc#" id="form-field-2" message="milestone description is required" required="yes" validateAt="onSubmit,onServer" placeholder="Milestone Description" size="30" ></td>
 	</tr>
 	
 	<tr>
-		<td>Milestone Description</td>
-		<td><cfinput type="text" name="milestone_desc" value="#milestone_desc#" message="milestone description is required" required="yes" validateAt="onSubmit,onServer" size="50" maxlength="100"></td>
+		<td width = "150"><label> Milestone Date </label></td>
+		<td><cfinput type="text" name="milestone_date" value="#milestone_date#" id="form-field-3" message="must be a valid date" required="yes" validateAt="onSubmit,onServer" placeholder="mm/dd/yyyy" ></td>
 	</tr>
 	
 	<tr>
-		<td>Milestone Date</td>
-		<td><cfinput type="text" name="milestone_date" value="#milestone_date#" message="must be a valid date" required="yes" validateAt="onSubmit,onServer" size="10" maxlength="10"></td>
-	</tr>
-	
-	<tr>
-		<td>Project</td>
-		<td><cfselect name="project_id" query="projects" value="project_id" display="project_name" selected="#VARIABLES.project_id#"></cfselect></td>
-	</tr>
-	
-	
-	<tr>
-		<td colspan="2" align="center">
-			<cfoutput>
-				<input type="submit" value="#ButtonText#">
-			</cfoutput>	
-		</td>
+		<td width = "150"><label> Project </label></td>
+		<td><cfselect name="project_id" class="form-control" query="projects" value="project_id" display="project_name" selected="#VARIABLES.project_id#"></cfselect></td>
 	</tr>
 	
 </table>
+</fieldset>	
+<!--- button part --->
+	
+	<div class="form-actions center">
+			<!--- <div class="col-md-offset-3 col-md-9">--->
+				<cfoutput>
+				<button class="btn btn-info" input type="submit" value="#ButtonText#">
+					<i class="icon-ok bigger-110"></i>
+					#ButtonText#
+				</button>
+				</cfoutput>
+	</div>
+
+
+
 
 </cfform>
+<!---closes form structure --->
+					
+				</div>
+			</div>
+		</div>
+</div>
 
-<!---page footer --->
+<!--- page footer --->
 <cfinclude template="footer.cfm">
 
 

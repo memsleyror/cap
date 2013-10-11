@@ -53,7 +53,7 @@
 </div><!-- /.page-header -->
 
 <!--- sets up beginning of form structure --->
-<div class="col-sm-5">
+<div class="col-sm-6">
 		<div class="widget-box">
 			<div class="widget-header">
 				<h4><cfoutput>#FormTitle#</cfoutput></h4>
@@ -78,13 +78,13 @@
 <table>
 
 <tr>
-	<td><label> Project Name </label></td>
-	<td><cfinput type="text" name="project_name" value="#project_name#" id="form-field-1" message="project name is required" required="yes" validateAt="onSubmit,onServer" placeholder="Project Name" /></td>
+	<td width = "150"><label> Project Name </label></td>
+	<td><cfinput type="text" name="project_name" value="#project_name#" id="form-field-1" message="project name is required" required="yes" validateAt="onSubmit,onServer" placeholder="Project Name" size="30" /></td>
 </tr>	
 
 <tr>
 	<td><label> Project Description </label>
-	<td><cfinput type="text" name="project_desc" value="#project_desc#" id="form-field-2" message="project desc is required" required="yes" validateAt="onSubmit,onServer" placeholder="Project Description"  /></td>
+	<td><cfinput type="text" name="project_desc" value="#project_desc#" id="form-field-2" message="project desc is required" required="yes" validateAt="onSubmit,onServer" placeholder="Project Description" size="30" /></td>
 </tr>
 
 <tr>
