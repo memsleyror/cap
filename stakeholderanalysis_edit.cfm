@@ -31,7 +31,7 @@
 
 	
 	<!---form text --->
-	<cfset FormTitle="Add a Case for Change">
+	<cfset FormTitle="Add Stakeholder Analysis">
 	<cfset ButtonText="Insert">
 	
 </cfif>
@@ -39,9 +39,23 @@
 <!---get stakeholdergroups --->
 <cfinvoke component="stakeholderanalysis" method="getStakeholderGroups" returnvariable="stakeholdergroups"> 
 
-
 <!---page header --->
 <cfinclude template="header.cfm">
+
+<div class="page-header">
+	<h1>
+		<cfoutput>#session.menuTracker.subMenuTitle#</cfoutput>
+		<small>
+			<i class="icon-double-angle-right"></i>
+			<cfoutput>#FormTitle#</cfoutput>
+		</small>
+	</h1>
+</div><!-- /.page-header -->
+
+<!--- sets up beginning of form structure --->
+<div class="col-sm-7">
+		
+<!--- closes beginning of form structure --->	
 
 <!---add/update stakeholderanalysis form --->
 <cfform action="stakeholderanalysis_process.cfm">
@@ -53,17 +67,11 @@
 	</cfoutput>
 </cfif>		
 
-<table align="center">
-	<tr>
-		<th colspan="2">
-			<cfoutput>
-				#FormTitle#
-			</cfoutput>	
-		</th>
-	</tr>
+<fieldset>
+<table>
 	
 	<tr>
-		<td>Stakeholder Impact</td>
+		<td width = "200"><label> Stakeholder Impact </label></td>
 		<td>
 			<cfoutput>
 				<textarea name="stakeholderanalysis_impact" cols="40" rows="5" wrap="hard">#stakeholderanalysis_impact#</textarea>
@@ -72,7 +80,7 @@
 	</tr>
 	
 	<tr>
-		<td>Mitigation Strategy</td>
+		<td width = "200"><label> Mitigation Strategy </label></td>
 		<td>
 			<cfoutput>
 				<textarea name="stakeholderanalysis_strategy" cols="40" rows="5" wrap="hard">#stakeholderanalysis_strategy#</textarea>
@@ -81,29 +89,36 @@
 	</tr>
 	
 	<tr>
-		<td>Analysis Date</td>
-		<td><cfinput type="text" name="stakeholderanalysis_date" value="#stakeholderanalysis_date#" message="must be a valid date" required="yes" validateAt="onSubmit,onServer" size="10" maxlength="10"></td>
+		<td width = "200"><label> Analysis Date </label></td>
+		<td><cfinput type="text" name="stakeholderanalysis_date" value="#stakeholderanalysis_date#" message="must be a valid date"  placeholder="mm/dd/yyyy" required="yes" validateAt="onSubmit,onServer" size="10" maxlength="10"></td>
 	</tr>
 	
 	<tr>
-		<td>Stakeholder Group</td>
+		<td width = "200"><label> Stakeholder Group </label></td>
 		<td><cfselect name="stakeholdergroup_id" query="stakeholdergroups" value="stakeholdergroup_id" display="stakeholdergroup_name" selected="#VARIABLES.stakeholdergroup_id#"></cfselect></td>
 	</tr>
 	
 	
-	
-	
-	<tr>
-		<td colspan="2" align="center">
-			<cfoutput>
-				<input type="submit" value="#ButtonText#">
-			</cfoutput>	
-		</td>
-	</tr>
-	
+
 </table>
+</fieldset>	
+
+<br><br>
+<!--- button part --->
+	
+	
+				<cfoutput>
+				<button class="btn btn-info" input type="submit" value="#ButtonText#">
+					<i class="icon-ok bigger-110"></i>
+					#ButtonText#
+				</button>
+				</cfoutput>
+
+<!--- close form --->	
 
 </cfform>
+
+</div>
 
 <!---page footer --->
 <cfinclude template="footer.cfm">

@@ -17,7 +17,7 @@
 	<cfset company_id=stakeholdergroup.company_id>
 	
 	<!---form text --->
-	<cfset FormTitle="Update a stakeholdergroup">
+	<cfset FormTitle="Update Stakeholder Group">
 	<cfset ButtonText="Update">
 	
 <cfelse>
@@ -29,7 +29,7 @@
 	<cfset company_id="">
 	
 	<!---form text --->
-	<cfset FormTitle="Add a stakeholdergroup">
+	<cfset FormTitle="Add Stakeholder Group">
 	<cfset ButtonText="Insert">
 	
 </cfif>
@@ -39,6 +39,21 @@
 
 <!---page header --->
 <cfinclude template="header.cfm">
+
+<div class="page-header">
+	<h1>
+		<cfoutput>#session.menuTracker.subMenuTitle#</cfoutput>
+		<small>
+			<i class="icon-double-angle-right"></i>
+			<cfoutput>#FormTitle#</cfoutput>
+		</small>
+	</h1>
+</div><!-- /.page-header -->
+
+<!--- sets up beginning of form structure --->
+<div class="col-sm-6">
+		
+<!--- closes beginning of form structure --->	
 
 <!---add/update stakeholdergroup form --->
 <cfform action="stakeholdergroup_process.cfm">
@@ -50,47 +65,53 @@
 	</cfoutput>
 </cfif>		
 
-<table align="center">
+<fieldset>
+<table>
+	
 	<tr>
-		<th colspan="2">
-			<cfoutput>
-				#FormTitle#
-			</cfoutput>	
-		</th>
+		<td width = "300"><label> Stakeholder Group </label></td>
+		<td><cfinput type="text" name="stakeholdergroup_name" value="#stakeholdergroup_name#" message="stakeholdergroup name is required" placeholder="Stakeholder Group Name" required="yes" validateAt="onSubmit,onServer" size="30" maxlength="100"></td>
 	</tr>
 	
 	<tr>
-		<td>Stakeholder Group Name</td>
-		<td><cfinput type="text" name="stakeholdergroup_name" value="#stakeholdergroup_name#" message="stakeholdergroup name is required" required="yes" validateAt="onSubmit,onServer" size="50" maxlength="100"></td>
+		<td width = "200"><label> Stakeholder Group Description </label></td>
+		<td><cfinput type="text" name="stakeholdergroup_desc" value="#stakeholdergroup_desc#" message="stakeholdergroup description is required" placeholder="Stakeholder Group Description" required="yes" validateAt="onSubmit,onServer" size="30" maxlength="100"></td>
 	</tr>
 	
 	<tr>
-		<td>Stakeholder Group Description</td>
-		<td><cfinput type="text" name="stakeholdergroup_desc" value="#stakeholdergroup_desc#" message="stakeholdergroup description is required" required="yes" validateAt="onSubmit,onServer" size="50" maxlength="100"></td>
+		<td width = "200"><label> Stakeholder Group Size </label></td>
+		<td><cfinput type="text" name="stakeholdergroup_size" value="#stakeholdergroup_size#" message="stakeholdergroup size is required" placeholder="Size" required="yes" validateAt="onSubmit,onServer" size="10" maxlength="10"></td>
 	</tr>
 	
 	<tr>
-		<td>Stakeholder Group Size</td>
-		<td><cfinput type="text" name="stakeholdergroup_size" value="#stakeholdergroup_size#" message="stakeholdergroup size is required" required="yes" validateAt="onSubmit,onServer" size="10" maxlength="10"></td>
-	</tr>
-	
-	<tr>
-		<td>Company</td>
+		<td width = "200"><label> Company </label></td>
 		<td><cfselect name="company_id" query="companies" value="company_id" display="company_name" selected="#VARIABLES.company_id#"></cfselect></td>
 	</tr>
 	
-	<tr>
-		<td colspan="2" align="center">
-			<cfoutput>
-				<input type="submit" value="#ButtonText#">
-			</cfoutput>	
-		</td>
-	</tr>
 	
+	
+
 </table>
+</fieldset>	
+
+<br><br>
+<!--- button part --->
+	
+	
+				<cfoutput>
+				<button class="btn btn-info" input type="submit" value="#ButtonText#">
+					<i class="icon-ok bigger-110"></i>
+					#ButtonText#
+				</button>
+				</cfoutput>
+
+<!--- close form --->	
 
 </cfform>
 
+</div>
+
 <!---page footer --->
 <cfinclude template="footer.cfm">
+
 

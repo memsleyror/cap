@@ -15,7 +15,7 @@
 	<cfset project_id=userproject.project_id>
 	
 	<!---form text --->
-	<cfset FormTitle="Update a Userproject">
+	<cfset FormTitle="Update User-Project">
 	<cfset ButtonText="Update">
 	
 <cfelse>
@@ -25,7 +25,7 @@
 	<cfset project_id="">
 	
 	<!---form text --->
-	<cfset FormTitle="Add a Userproject">
+	<cfset FormTitle="Add User-Project">
 	<cfset ButtonText="Insert">
 	
 </cfif>
@@ -39,6 +39,27 @@
 <!---page header --->
 <cfinclude template="header.cfm">
 
+<div class="page-header">
+	<h1>
+		<cfoutput>#session.menuTracker.subMenuTitle#</cfoutput>
+		<small>
+			<i class="icon-double-angle-right"></i>
+			<cfoutput>#FormTitle#</cfoutput>
+		</small>
+	</h1>
+</div><!-- /.page-header -->
+
+<!--- sets up beginning of form structure --->
+<div class="col-sm-6">
+		<!--- <div class="widget-box">
+			<div class="widget-header">
+				<h4><cfoutput>#FormTitle#</cfoutput></h4>
+			</div>
+
+			<div class="widget-body">
+				<div class="widget-main no-padding"> --->
+<!--- closes beginning of form structure --->	
+
 <!---add/update userproject form --->
 <cfform action="userproject_process.cfm">
 	
@@ -49,36 +70,51 @@
 	</cfoutput>
 </cfif>		
 
-<table align="center">
+<fieldset>
+<table>
+
+
+	
 	<tr>
-		<th colspan="2">
-			<cfoutput>
-				#FormTitle#
-			</cfoutput>	
-		</th>
+		<td width = "150"><label> User </label></td>
+		<td><cfselect name="user_id" query="users" value="user_id" display="user_lastname"  selected="#VARIABLES.user_id#"></cfselect></td>
 	</tr>
 	
 	<tr>
-		<td>User</td>
-		<td><cfselect name="user_id" query="users" value="user_id" display="user_lastname" selected="#VARIABLES.user_id#"></cfselect></td>
+		<td width = "150"><label> Project </label></td>
+		<td><cfselect name="project_id" query="projects" value="project_id" display="project_name"  selected="#VARIABLES.project_id#"></cfselect></td>
 	</tr>
 	
-	<tr>
-		<td>Project</td>
-		<td><cfselect name="project_id" query="projects" value="project_id" display="project_name" selected="#VARIABLES.project_id#"></cfselect></td>
-	</tr>
 	
-	<tr>
-		<td colspan="2" align="center">
-			<cfoutput>
-				<input type="submit" value="#ButtonText#">
-			</cfoutput>	
-		</td>
-	</tr>
 	
+
+
 </table>
+</fieldset>	
+
+<br><br>
+<!--- button part --->
+	
+	<!--- <div class="form-actions center"> --->
+			<!--- <div class="col-md-offset-3 col-md-9">--->
+				<cfoutput>
+				<button class="btn btn-info" input type="submit" value="#ButtonText#">
+					<i class="icon-ok bigger-110"></i>
+					#ButtonText#
+				</button>
+				</cfoutput>
+	<!--- </div> --->
+
+
+
 
 </cfform>
+<!---closes form structure --->
+				<!--- 
+				</div>
+			</div>
+		</div>--->	
+</div>
 
 <!---page footer --->
 <cfinclude template="footer.cfm">

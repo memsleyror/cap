@@ -16,7 +16,7 @@
 	
 	
 	<!---form text --->
-	<cfset FormTitle="Update a company">
+	<cfset FormTitle="Update Company">
 	<cfset ButtonText="Update">
 	
 <cfelse>
@@ -27,13 +27,28 @@
 	
 	
 	<!---form text --->
-	<cfset FormTitle="Add a company">
+	<cfset FormTitle="Add Company">
 	<cfset ButtonText="Insert">
 	
 </cfif>
 
 <!---page header --->
 <cfinclude template="header.cfm">
+
+<div class="page-header">
+	<h1>
+		<cfoutput>#session.menuTracker.subMenuTitle#</cfoutput>
+		<small>
+			<i class="icon-double-angle-right"></i>
+			<cfoutput>#FormTitle#</cfoutput>
+		</small>
+	</h1>
+</div><!-- /.page-header -->
+
+<!--- sets up beginning of form structure --->
+<div class="col-sm-6">
+		
+<!--- closes beginning of form structure --->	
 
 <!---add/update company form --->
 <cfform action="company_process.cfm">
@@ -45,38 +60,40 @@
 	</cfoutput>
 </cfif>		
 
-<table align="center">
+<fieldset>
+<table>
+	
 	<tr>
-		<th colspan="2">
-			<cfoutput>
-				#FormTitle#
-			</cfoutput>	
-		</th>
+		<td width = "150"><label> Company Name </label></td>
+		<td><cfinput type="text" name="company_name" value="#company_name#" message="company name is required" required="yes" placeholder="Company Name" validateAt="onSubmit,onServer" size="30" maxlength="100"></td>
 	</tr>
 	
 	<tr>
-		<td>company Name</td>
-		<td><cfinput type="text" name="company_name" value="#company_name#" message="company name is required" required="yes" validateAt="onSubmit,onServer" size="50" maxlength="100"></td>
+		<td width = "150"><label> Company Description </label></td>
+		<td><cfinput type="text" name="company_desc" value="#company_desc#" message="company description is required" required="yes" placeholder="Company Description" validateAt="onSubmit,onServer" size="30" maxlength="100"></td>
 	</tr>
 	
-	<tr>
-		<td>company Description</td>
-		<td><cfinput type="text" name="company_desc" value="#company_desc#" message="company description is required" required="yes" validateAt="onSubmit,onServer" size="50" maxlength="100"></td>
-	</tr>
-	
-	
-	
-	<tr>
-		<td colspan="2" align="center">
-			<cfoutput>
-				<input type="submit" value="#ButtonText#">
-			</cfoutput>	
-		</td>
-	</tr>
-	
+
+
 </table>
+</fieldset>	
+
+<br><br>
+<!--- button part --->
+	
+	
+				<cfoutput>
+				<button class="btn btn-info" input type="submit" value="#ButtonText#">
+					<i class="icon-ok bigger-110"></i>
+					#ButtonText#
+				</button>
+				</cfoutput>
+
+<!--- close form --->	
 
 </cfform>
+
+</div>
 
 <!---page footer --->
 <cfinclude template="footer.cfm">

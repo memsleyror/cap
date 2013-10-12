@@ -54,9 +54,23 @@
 <cfinvoke component="users" method="getUserProjects" returnvariable="userProjects"> 
 --->
 
-
 <!---page header --->
 <cfinclude template="header.cfm">
+
+<div class="page-header">
+	<h1>
+		<cfoutput>#session.menuTracker.subMenuTitle#</cfoutput>
+		<small>
+			<i class="icon-double-angle-right"></i>
+			<cfoutput>#FormTitle#</cfoutput>
+		</small>
+	</h1>
+</div><!-- /.page-header -->
+
+<!--- sets up beginning of form structure --->
+<div class="col-sm-6">
+		
+<!--- closes beginning of form structure --->	
 
 <!---add/update user form --->
 <cfform action="user_process.cfm">
@@ -68,45 +82,36 @@
 	</cfoutput>
 </cfif>		
 
-
-
-
-<table align="center">
-	<tr>
-		<th colspan="2">
-			<cfoutput>
-				#FormTitle#
-			</cfoutput>	
-		</th>
-	</tr>
+<fieldset>
+<table>
 	
 	<tr>
-		<td>Login</td>
+		<td width = "150"><label> Login </label></td>
 		<td><cfinput type="text" name="user_login" value="#user_login#" message="user login is required" required="yes" validateAt="onSubmit,onServer" size="50" maxlength="100"></td>
 	</tr>
 	
 	<tr>
-		<td>Password</td>
+		<td width = "150"><label> Password </label></td>
 		<td><cfinput type="text" name="user_password" value="#user_password#" message="user password is required" required="yes" validateAt="onSubmit,onServer" size="50" maxlength="100"></td>
 	</tr>
 	
 	<tr>
-		<td>First Name</td>
+		<td width = "150"><label> First Name </label></td>
 		<td><cfinput type="text" name="user_firstname" value="#user_firstname#" message="user first name is required" required="yes" validateAt="onSubmit,onServer" size="50" maxlength="100"></td>
 	</tr>
 	
 	<tr>
-		<td>Last Name</td>
+		<td width = "150"><label> Last Name </label></td>
 		<td><cfinput type="text" name="user_lastname" value="#user_lastname#" message="user last name is required" required="yes" validateAt="onSubmit,onServer" size="50" maxlength="100"></td>
 	</tr>
 	
 	<tr>
-		<td>Email</td>
+		<td width = "150"><label> Email </label></td>
 		<td><cfinput type="text" name="user_email" value="#user_email#" message="user email is required" required="yes" validateAt="onSubmit,onServer" size="50" maxlength="100"></td>
 	</tr>
 	
 	<tr>
-		<td>Role</td>
+		<td width = "150"><label> Role </label></td>
 		<td><cfselect name="role_id" query="roles" value="role_id" display="role_name" selected="#VARIABLES.role_id#"></cfselect></td>
 	</tr>
 	
@@ -117,17 +122,26 @@
 	</tr>
 	--->
 	
-	<tr>
-		<td colspan="2" align="center">
-			<cfoutput>
-				<input type="submit" value="#ButtonText#">
-			</cfoutput>	
-		</td>
-	</tr>
 	
 </table>
+</fieldset>	
+
+<br><br>
+<!--- button part --->
+	
+	
+				<cfoutput>
+				<button class="btn btn-info" input type="submit" value="#ButtonText#">
+					<i class="icon-ok bigger-110"></i>
+					#ButtonText#
+				</button>
+				</cfoutput>
+
+<!--- close form --->	
 
 </cfform>
+
+</div>
 
 <!---page footer --->
 <cfinclude template="footer.cfm">

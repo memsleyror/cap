@@ -15,7 +15,7 @@
 	<cfset stakeholdergroup_id=userstakeholdergroup.stakeholdergroup_id>
 	
 	<!---form text --->
-	<cfset FormTitle="Update a Userstakeholdergroup">
+	<cfset FormTitle="Update User-Stakeholder Group">
 	<cfset ButtonText="Update">
 	
 <cfelse>
@@ -25,7 +25,7 @@
 	<cfset stakeholdergroup_id="">
 	
 	<!---form text --->
-	<cfset FormTitle="Add a Userstakeholdergroup">
+	<cfset FormTitle="Add User-Stakeholder Group">
 	<cfset ButtonText="Insert">
 	
 </cfif>
@@ -39,6 +39,21 @@
 <!---page header --->
 <cfinclude template="header.cfm">
 
+<div class="page-header">
+	<h1>
+		<cfoutput>#session.menuTracker.subMenuTitle#</cfoutput>
+		<small>
+			<i class="icon-double-angle-right"></i>
+			<cfoutput>#FormTitle#</cfoutput>
+		</small>
+	</h1>
+</div><!-- /.page-header -->
+
+<!--- sets up beginning of form structure --->
+<div class="col-sm-6">
+		
+<!--- closes beginning of form structure --->	
+
 <!---add/update userstakeholdergroup form --->
 <cfform action="userstakeholdergroup_process.cfm">
 	
@@ -49,40 +64,42 @@
 	</cfoutput>
 </cfif>		
 
-<table align="center">
-	<tr>
-		<th colspan="2">
-			<cfoutput>
-				#FormTitle#
-			</cfoutput>	
-		</th>
-	</tr>
+<fieldset>
+<table>
 	
 	<tr>
-		<td>User</td>
+		<td width = "150"><label> User </label></td>
 		<td><cfselect name="user_id" query="users" value="user_id" display="user_lastname" selected="#VARIABLES.user_id#"></cfselect></td>
 	</tr>
 	
 	<tr>
-		<td>Stakeholder Group</td>
+		<td width = "150"><label> Stakeholder Group </label></td>
 		<td><cfselect name="stakeholdergroup_id" query="stakeholdergroups" value="stakeholdergroup_id" display="stakeholdergroup_name" selected="#VARIABLES.stakeholdergroup_id#"></cfselect></td>
 	</tr>
 	
 	
 	
-	
-	
-	<tr>
-		<td colspan="2" align="center">
-			<cfoutput>
-				<input type="submit" value="#ButtonText#">
-			</cfoutput>	
-		</td>
-	</tr>
-	
+
+
 </table>
+</fieldset>	
+
+<br><br>
+<!--- button part --->
+	
+	
+				<cfoutput>
+				<button class="btn btn-info" input type="submit" value="#ButtonText#">
+					<i class="icon-ok bigger-110"></i>
+					#ButtonText#
+				</button>
+				</cfoutput>
+
+<!--- close form --->	
 
 </cfform>
+
+</div>
 
 <!---page footer --->
 <cfinclude template="footer.cfm">

@@ -15,7 +15,7 @@
 	<cfset company_id=usercompany.company_id>
 	
 	<!---form text --->
-	<cfset FormTitle="Update a Usercompany">
+	<cfset FormTitle="Update User-Company">
 	<cfset ButtonText="Update">
 	
 <cfelse>
@@ -25,7 +25,7 @@
 	<cfset company_id="">
 	
 	<!---form text --->
-	<cfset FormTitle="Add a Usercompany">
+	<cfset FormTitle="Add User-Company">
 	<cfset ButtonText="Insert">
 	
 </cfif>
@@ -39,6 +39,21 @@
 <!---page header --->
 <cfinclude template="header.cfm">
 
+<div class="page-header">
+	<h1>
+		<cfoutput>#session.menuTracker.subMenuTitle#</cfoutput>
+		<small>
+			<i class="icon-double-angle-right"></i>
+			<cfoutput>#FormTitle#</cfoutput>
+		</small>
+	</h1>
+</div><!-- /.page-header -->
+
+<!--- sets up beginning of form structure --->
+<div class="col-sm-6">
+		
+<!--- closes beginning of form structure --->	
+
 <!---add/update usercompany form --->
 <cfform action="usercompany_process.cfm">
 	
@@ -49,39 +64,45 @@
 	</cfoutput>
 </cfif>		
 
-<table align="center">
-	<tr>
-		<th colspan="2">
-			<cfoutput>
-				#FormTitle#
-			</cfoutput>	
-		</th>
-	</tr>
+<fieldset>
+<table>
 	
 	<tr>
-		<td>User</td>
+		<td width = "150"><label> User </label></td>
 		<td><cfselect name="user_id" query="users" value="user_id" display="user_lastname" selected="#VARIABLES.user_id#"></cfselect></td>
 	</tr>
 	
 	<tr>
-		<td>Company</td>
+		<td width = "150"><label> Company </label></td>
 		<td><cfselect name="company_id" query="companies" value="company_id" display="company_name" selected="#VARIABLES.company_id#"></cfselect></td>
 	</tr>
 	
-	<tr>
-		<td colspan="2" align="center">
-			<cfoutput>
-				<input type="submit" value="#ButtonText#">
-			</cfoutput>	
-		</td>
-	</tr>
-	
+
+
 </table>
+</fieldset>	
+
+<br><br>
+<!--- button part --->
+	
+	
+				<cfoutput>
+				<button class="btn btn-info" input type="submit" value="#ButtonText#">
+					<i class="icon-ok bigger-110"></i>
+					#ButtonText#
+				</button>
+				</cfoutput>
+
+<!--- close form --->	
 
 </cfform>
 
+</div>
+
 <!---page footer --->
 <cfinclude template="footer.cfm">
+	
+
 
 
 

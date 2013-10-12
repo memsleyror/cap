@@ -53,13 +53,7 @@
 
 <!--- sets up beginning of form structure --->
 <div class="col-sm-6">
-		<div class="widget-box">
-			<div class="widget-header">
-				<h4><cfoutput>#FormTitle#</cfoutput></h4>
-			</div>
-
-			<div class="widget-body">
-				<div class="widget-main no-padding">
+		
 <!--- closes beginning of form structure --->	
 
 <!---add/update user form --->
@@ -97,9 +91,10 @@
 	
 </table>
 </fieldset>	
+<br><br>
 <!--- button part --->
 	
-	<div class="form-actions center">
+	
 			<!--- <div class="col-md-offset-3 col-md-9">--->
 				<cfoutput>
 				<button class="btn btn-info" input type="submit" value="#ButtonText#">
@@ -107,21 +102,19 @@
 					#ButtonText#
 				</button>
 				</cfoutput>
-	</div>
+	
 
 
 
 
 </cfform>
 <!---closes form structure --->
-					
-				</div>
-			</div>
-		</div>
+			
 </div>
 
-<!--- page footer --->
+<!---page footer --->
 <cfinclude template="footer.cfm">
+
 
 
 
