@@ -20,6 +20,18 @@
 			</cfquery>	 
 			<cfreturn project>
 		</cffunction>
+		
+		<!--- get user specific projects based on session user id --->
+			
+		<cffunction name="getmine" returntype="query" hint="get project details">
+			<cfquery name="myprojects">	
+				SELECT projects.project_name, users.user_lastname, users.user_id
+				FROM projects INNER JOIN userproject ON projects.project_id = userproject.project_id
+		 		INNER JOIN users ON userproject.user_id = users.user_id
+		 		WHERE users.user_id = #session.auth.user_id#
+			</cfquery>	 
+			<cfreturn myprojects>
+		</cffunction>	
 
 		<!---add a project --->
 		<cffunction name="add" returntype="boolean" hint="add a project">

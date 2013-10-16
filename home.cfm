@@ -1,7 +1,7 @@
 ﻿
 
 <!---get all projects --->
-<cfinvoke component="projects" method="list" returnvariable="projects">
+<cfinvoke component="projects" method="getmine" returnvariable="myprojects">
 
 <!--- INCLUDE HEADER                                                               --->
 <cfset session.menuTracker.menuTitle = "Home">
@@ -39,7 +39,7 @@
 												</thead>
 												
 												<tbody>
-													<cfoutput query="projects">
+													<cfoutput query="myprojects">
 													<tr>
 														<td><a href="project_dashboard.cfm">#project_name#</a></td>
 														
