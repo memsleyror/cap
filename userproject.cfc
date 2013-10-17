@@ -27,7 +27,7 @@
 			<cfargument name="user_id" type="numeric" required="yes" hint="user ID">
 			<cfargument name="project_id" type="numeric" required="yes" hint="project ID">
 			
-			<!---insert team --->
+			<!---insert user project --->
 			<cfquery>
 				INSERT INTO userproject(user_id, project_id)
 				VALUES(#ARGUMENTS.user_id#,

@@ -374,6 +374,15 @@
 					
 
 					<ul class="nav nav-list">
+						
+						<li>
+							<a href="home.cfm">
+								<i class="icon-text-width"></i>
+								<span class="menu-text"> My Projects </span>
+							</a>
+						</li>
+						
+						
 						<li>
 							<a href="index.html">
 								<i class="icon-dashboard"></i>
@@ -381,12 +390,7 @@
 							</a>
 						</li>
 
-						<li>
-							<a href="typography.html">
-								<i class="icon-text-width"></i>
-								<span class="menu-text"> Best Practices </span>
-							</a>
-						</li>
+						
 
 				<cfif session.menuTracker.menuTitle is "Project Setup">
 						<li class="active open">
