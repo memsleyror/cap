@@ -41,7 +41,7 @@
 												<tbody>
 													<cfoutput query="myprojects">
 													<tr>
-														<td><a href="project_dashboard.cfm">#project_name#</a></td>
+														<td><a href="project_dashboard.cfm?project_id=#project_id#">#project_name#</a></td>
 														
 														<!--- 
 														<td>

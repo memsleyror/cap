@@ -23,14 +23,34 @@
 		
 		<!--- get user specific projects based on session user id --->
 			
-		<cffunction name="getmine" returntype="query" hint="get project details">
+		<cffunction name="getmine" returntype="query" hint="get my projects">
 			<cfquery name="myprojects">	
-				SELECT projects.project_name, users.user_lastname, users.user_id
+				SELECT projects.project_id, projects.project_name, users.user_lastname, users.user_id, userproject.userproject_id
 				FROM projects INNER JOIN userproject ON projects.project_id = userproject.project_id
 		 		INNER JOIN users ON userproject.user_id = users.user_id
 		 		WHERE users.user_id = #session.auth.user_id#
 			</cfquery>	 
 			<cfreturn myprojects>
+		</cffunction>	
+
+		<!---get my mood --->
+
+		<cffunction name="getmood" returntype="query" hint="get my mood">
+			<cfquery name="mymood">	
+				SELECT projects.project_id, 
+					userproject.user_id, 
+					userprojectmood.userproject_id, 
+					mood.mood_id, 
+					mood.mood_name, 
+					userprojectmood.userprojectmood_id
+				FROM userproject 
+				INNER JOIN userprojectmood ON userproject.userproject_id = userprojectmood.userproject_id
+	 			INNER JOIN projects ON projects.project_id = userproject.project_id
+	 			INNER JOIN mood ON userprojectmood.mood_id = mood.mood_id
+	 			WHERE userproject.user_id = #session.auth.user_id#
+	 			AND projects.project_id=#ARGUMENTS.project_id#
+	 		</cfquery>	 
+			<cfreturn mymood>	
 		</cffunction>	
 
 		<!---add a project --->
@@ -78,6 +98,42 @@
 			</cfquery>				
 			<cfreturn true>
 		</cffunction>
+		
+		<!---add a project mood --->
+		<cffunction name="addMood" returntype="boolean" hint="add a project mood">
+			
+			<!---method arguments --->
+			<cfargument name="mood_id" type="numeric" required="yes" hint="mood ID">
+			
+			<!---insert project mood--->
+			<!--- 
+			<cfquery>
+				INSERT INTO projects(project_name, project_desc, project_start_date, project_end_date, company_id)
+				VALUES('#Trim(ARGUMENTS.project_name)#',
+						'#Trim(ARGUMENTS.project_desc)#',
+						#CreateODBCDate(ARGUMENTS.project_start_date)#,
+						#CreateODBCDate(ARGUMENTS.project_end_date)#,
+						#ARGUMENTS.mood_id#
+				)
+			</cfquery>	
+			<cfreturn true>
+			--->
+		</cffunction>	
+		
+		<!---update a project mood --->
+		<cffunction name="updateMood" returntype="boolean" hint="update a project mood">
+			<!---method arguments --->
+			<cfargument name="userprojectmood_id" type="numeric" required="yes" hint="userprojectmood ID">
+			<cfargument name="mood_id" type="numeric" required="yes" hint="mood ID">
+			
+			<!---update project --->
+			<cfquery>
+				UPDATE userprojectmood
+				SET mood_id=#ARGUMENTS.mood_id#
+				WHERE userprojectmood_id=#ARGUMENTS.userprojectmood_id#
+			</cfquery>				
+			<cfreturn true>
+		</cffunction>
 
 		<!---delete a project --->
 		<cffunction name="delete" returntype="boolean" hint="delete a project">
@@ -98,6 +154,16 @@
 				ORDER BY company_id
 			</cfquery>	
 			<cfreturn companies>	
+		</cffunction>
+		
+		<!---get moods --->
+		<cffunction name="getMoods" returntype="query" hint="get moods">
+			<cfquery name="moods">
+				SELECT mood_id, mood_name
+				FROM mood
+				ORDER BY mood_id
+			</cfquery>	
+			<cfreturn moods>	
 		</cffunction>
 
 
