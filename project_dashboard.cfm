@@ -1,12 +1,20 @@
 ﻿
+<!---first time in i am brining url.project_id --->
+<!---next time i am not --->
+<!--- set session = project id --->
+
+<cfif IsDefined("URL.project_id")>
+	<cfset session.proj.project_id = URL.project_id>
+</cfif>	
+
 <!---get the project record --->
-	<cfinvoke component="projects" method="get" project_id="#URL.project_id#" returnvariable="project">
+	<cfinvoke component="projects" method="get" project_id="#session.proj.project_id#" returnvariable="project">
 
 	<!---save info to variables --->
 	<cfset project_name=Trim(project.project_name)>
 
 <!---get the mood record --->
-	<cfinvoke component="projects" method="getmood" project_id="#URL.project_id#" returnvariable="mymood">
+	<cfinvoke component="projects" method="getmood" project_id="#session.proj.project_id#" returnvariable="mymood">
 	
 	<!---save info to variables --->
 	<cfset mood_name=Trim(mymood.mood_name)>
@@ -59,6 +67,7 @@
 				
 						<div class="widget-main no-padding">			
 						Content will go here
+						<cfoutput>#session.proj.project_id#</cfoutput>
 	
 						</div><!--- /widget-main --->
 				</div><!--- /widget-body --->
@@ -94,7 +103,7 @@
 					<cfselect name="mood_id" class="form-control" query="moods" value="mood_id" display="mood_name" <!--- selected="#VARIABLES.mood_id#"---> ></cfselect>
 					
 					<cfoutput>
-						<button class="btn btn-info" input type="submit" value="#ButtonText#">
+						<button class="btn btn-info" name="button_pos" input type="submit" value="#ButtonText#">
 							<i class="icon-ok bigger-110"></i>
 							#ButtonText#
 						</button>
