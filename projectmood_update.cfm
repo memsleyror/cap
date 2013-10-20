@@ -30,7 +30,7 @@
 		<cfinvokeargument name="mood_id" value=3>
 	<cfelseif IsDefined("FORM.button_confused")>
 		<cfinvokeargument name="mood_id" value=4>
-	<cfelse>		
+	<cfelseif IsDefined("FORM.button_neutral")>
 		<cfinvokeargument name="mood_id" value=1>
 	</cfif>
 

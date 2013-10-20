@@ -51,34 +51,44 @@
 
 <!--- PAGE CONTENT BEGINS --->
 
+<!---first row begins --->
 <div class="row">
 	
-	<!---first box --->
+	<!---first row, first cell --->
 	<div class="col-sm-6">
 		<div class="widget-box ">
 			<div class="widget-header">
 				<h4 class="lighter smaller">
-					<i class="icon-comment blue"></i>
-					Box 1
+					<!--- <i class="icon-comment blue"></i> --->
+					Purpose of the Project
 				</h4>
 			</div>
 				
 				<div class="widget-body">
 				
-						<div class="widget-main no-padding">			
-						Content will go here
-						<cfoutput>#session.proj.project_id#</cfoutput>
+						<div class="widget-main padding-4">			
+						<blockquote>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+
+							<small>
+								Someone famous
+								<cite title="Source Title">Source Title</cite>
+							</small>
+						</blockquote>
+						
 	
 						</div><!--- /widget-main --->
 				</div><!--- /widget-body --->
 		</div><!--- /widget-box --->
 	</div><!---span --->
 
+
+	<!---first row, second cell --->
 	<div class="col-sm-6">
 		<div class="widget-box transparent">
 			<div class="widget-header widget-header-flat">
 				<h4 class="lighter">
-					<i class="icon-signal"></i>
+					<!--- <i class="icon-signal"></i> --->
 					How I Feel About This Project
 				</h4>
 
@@ -100,14 +110,15 @@
 						<input type="hidden" name="userprojectmood_id" value="#mymood.userprojectmood_id#">
 					</cfoutput>
 					
-					<cfselect name="mood_id" class="form-control" query="moods" value="mood_id" display="mood_name" <!--- selected="#VARIABLES.mood_id#"---> ></cfselect>
+					<!--- <cfselect name="mood_id" class="form-control" query="moods" value="mood_id" display="mood_name" <!--- selected="#VARIABLES.mood_id#"---> ></cfselect>--->
 					
-					<cfoutput>
-						<button class="btn btn-info" name="button_pos" input type="submit" value="#ButtonText#">
-							<i class="icon-ok bigger-110"></i>
-							#ButtonText#
-						</button>
-					</cfoutput>
+					
+						<button class="btn btn-success" name="button_pos" input type="submit">Positive</button>
+						<button class="btn btn-danger" name="button_neg" input type="submit">Negative</button>
+						<button class="btn btn-grey" name="button_confused" input type="submit">Confused</button>
+						<button class="btn btn-yellow" name="button_neutral" input type="submit">Neutral</button>
+					
+					<!--- <button class="btn btn-purple">Purple</button>--->
 					
 					</cfform>
 					
@@ -117,6 +128,60 @@
 	</div><!---span --->
 
 </div><!---end of row 1 --->
+
+<div class="hr hr32 hr-dotted"></div>
+
+<!---second row begins --->
+<div class="row">
+	
+	<!---second row, first cell --->
+	<div class="col-sm-6">
+		<div class="widget-box transparent">
+						<div class="widget-header widget-header-flat">
+							<h4 class="lighter">
+								<!--- <i class="icon-signal"></i> --->
+								My Tasks
+							</h4>
+							
+							<div class="widget-toolbar">
+								<a href="#" data-action="collapse">
+									<i class="icon-chevron-up"></i>
+								</a>
+							</div>
+						</div><!---/widget header --->
+
+			<div class="widget-body">
+					<div class="widget-main padding-4">
+				
+				
+				
+					</div><!--- /widget-main --->
+			</div><!--- /widget-body --->
+		</div><!--- /widget-box --->
+	</div><!---span --->
+
+	<!---second row, second cell --->
+	<div class="col-sm-6">
+		<div class="widget-box ">
+			<div class="widget-header">
+				<h4 class="lighter smaller">
+					<!--- <i class="icon-comment blue"></i> --->
+					Project Feed
+				</h4>
+			</div>
+				
+				<div class="widget-body">
+				
+						<div class="widget-main padding-4">			
+						
+						
+	
+						</div><!--- /widget-main --->
+				</div><!--- /widget-body --->
+		</div><!--- /widget-box --->
+	</div><!---span --->
+
+</div><!---end of row 2 --->
 
 <!---these 2 divs close the entire page --->
 	</div>
