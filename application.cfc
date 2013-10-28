@@ -1,5 +1,9 @@
 ﻿<cfcomponent output="false" >
 	
+	<!--- application name --->
+	<cfset this.name = "CAP">
+	
+	
 	<!---default datasource --->
 	<cfset this.datasource="CAP_DEV">
 
