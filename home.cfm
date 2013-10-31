@@ -2,6 +2,7 @@
 
 <!---get all projects --->
 <cfinvoke component="projects" method="getmine" returnvariable="myprojects">
+<cfset faqs = application.faqService.getAnsweredQuestions()>
 
 <!--- INCLUDE HEADER                                                               --->
 <cfset session.menuTracker.menuTitle = "Home">
@@ -10,19 +11,17 @@
 <cfinclude template="header.cfm">
 
 <div class="page-header">
-							<h1>
-								<cfoutput>#session.menuTracker.subMenuTitle#</cfoutput>
-								<!--- 
-								<small>
-									<i class="icon-double-angle-right"></i>
-									<cfoutput>#FormTitle#</cfoutput>
-								</small>
-								--->
-							</h1>
+	<h1>
+		<cfoutput>#session.menuTracker.subMenuTitle#</cfoutput>
+		<!--- 
+		<small>
+			<i class="icon-double-angle-right"></i>
+			<cfoutput>#FormTitle#</cfoutput>
+		</small>
+		--->
+	</h1>
 </div><!-- /.page-header -->
 
-<div class="row">
-	<div class="col-xs-4">
 		
 <!---  PAGE CONTENT BEGINS --->
 
@@ -69,6 +68,29 @@
 				</div><!-- /span -->
 		</div><!-- /row -->
 
+
+<div class="row">
+	<div class="col-sm-6">
+		<div class="widget-box transparent" id="recent-box">
+			<div class="widget-header">
+				<h4 class="lighter smaller">
+					<i class="icon-comment blue"></i>
+					FAQs
+				</h4>
+			</div>
+			<div class="widget-body">
+				<div class="itemdiv">
+					<cfoutput query="faqs">
+						<div class="text">
+							<i class="icon-quote-left"></i>
+							#question#
+						</div>
+					</cfoutput>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
 
 <!---page footer --->
