@@ -201,7 +201,7 @@
 					<cfoutput query="faqs">
 						<div class="text">
 							<i class="icon-quote-left"></i>
-							#question#
+							<a href="faq.cfm?faq_id=#faq_id#&project_id=#url.project_id#">#question#</a>
 						</div>
 					</cfoutput>
 				</div>
