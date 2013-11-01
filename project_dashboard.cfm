@@ -23,6 +23,9 @@
 <!---get moods --->
 <cfinvoke component="projects" method="getMoods" returnvariable="moods"> 	
 
+<!--- get faqs for project --->
+<cfset faqs = application.faqService.getAnsweredQuestions(url.project_id)>
+
 <!---button caption --->
 <cfset ButtonText="Update">	
 
@@ -182,6 +185,32 @@
 	</div><!---span --->
 
 </div><!---end of row 2 --->
+
+
+<div class="row">
+	<div class="col-sm-6">
+		<div class="widget-box transparent" id="recent-box">
+			<div class="widget-header">
+				<h4 class="lighter smaller">
+					<i class="icon-comment blue"></i>
+					FAQs
+				</h4>
+			</div>
+			<div class="widget-body">
+				<div class="itemdiv">
+					<cfoutput query="faqs">
+						<div class="text">
+							<i class="icon-quote-left"></i>
+							#question#
+						</div>
+					</cfoutput>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
 
 <!---these 2 divs close the entire page --->
 	</div>
