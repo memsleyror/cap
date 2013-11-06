@@ -2,7 +2,18 @@
 <cfparam name="url.project_id" default="">
 <cfparam name="url.faq_id" default="">
 
-<cfset faqs = application.faqService.getAnsweredQuestions(url.project_id)>
+<cfif structKeyExists(form, "newfaq") and len(form.newfaq)>
+	<cfset application.faqService.addQuestion(form.newfaq,url.project_id)>
+</cfif>
+
+<!--- This should be abstracted better. --->
+<cfif session.auth.role_id eq 2>
+	<cfset canEdit = true>
+	<cfset faqs = application.faqService.getQuestions(url.project_id)>
+<cfelse>
+	<cfset canEdit = false>
+	<cfset faqs = application.faqService.getAnsweredQuestions(url.project_id)>
+</cfif>
 
 <cfinclude template="header.cfm">
 
@@ -29,18 +40,17 @@
 <i class="icon-user bigger-130"></i>
 &nbsp; #question#
 </a>
-<!---
-				<a class="accordion-toggle <cfif faq_id neq url.faq_id>colapsed</cfif>" data-toggle="collapse" data-parent="##accordion" href="##collapse#faq_id#">
-					<i class="icon-angle-down bigger-110" data-icon-hide="icon-angle-down" data-icon-show="icon-angle-right"></i>
-					&nbsp;#question#
---->
-				</a>
 			</h4>
 		</div>
 
 		<div class="panel-collapse collapse <cfif faq_id eq url.faq_id>in</cfif>" id="faq-#faq_id#">
 			<div class="panel-body">
 				#answer#
+				<cfif canEdit>
+					<p>
+					<a class="btn btn-xs btn-primary" href="faq_edit.cfm?faq_id=#faq_id#">Edit</a>
+					</p>
+				</cfif>
 			</div>
 		</div>
 	</div>

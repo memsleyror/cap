@@ -206,20 +206,21 @@
 					</cfoutput>
 				</div>
 			
-
-<form>
-	<div class="form-actions">
-		<div class="input-group">
-			<input placeholder="Type your question here ..." type="text" class="form-control" name="message" />
-			<span class="input-group-btn">
-				<button class="btn btn-sm btn-info no-radius" type="button">
-					<i class="icon-share-alt"></i>
-					Submit
-				</button>
-			</span>
-		</div>
-	</div>
-</form>
+				<cfoutput>
+				<form method="post" action="faq.cfm?project_id=#url.project_id#">
+					<div class="form-actions">
+						<div class="input-group">
+							<input placeholder="Type your question here ..." type="text" class="form-control" name="newfaq" />
+							<span class="input-group-btn">
+								<button class="btn btn-sm btn-info no-radius" type="submit">
+									<i class="icon-share-alt"></i>
+									Submit
+								</button>
+							</span>
+						</div>
+					</div>
+				</form>
+				</cfoutput>
 
 			</div>
 		</div>
