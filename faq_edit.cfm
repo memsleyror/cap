@@ -7,12 +7,27 @@
 
 <cfset faq = application.faqService.getFaq(url.faq_id)>
 
+<cfif structKeyExists(form, "cancel")>
+	<cflocation url="faq.cfm?project_id=#faq.projectidfk#&faq_id=#faq.faq_id#" addToken="false">
+</cfif>
+
+<cfif structKeyExists(form, "save")>
+	<cfset faq = {}>
+	<cfset faq.question = form.question>
+	<cfset faq.answer = form.answer>
+	<cfset faq.deleted = structKeyExists(form,"deleted")>
+	<cfset faq.rejected = structKeyExists(form,"rejected")>
+	<cfset faq.edited = structKeyExists(form,"edited")>
+	<cfset faq.faq_id = url.faq_id>
+	<cfset application.faqService.updateFaq(faq)>
+	<cflocation url="faq_edit.cfm?faq_id=#faq.faq_id#" addToken="false">
+</cfif>
+
 <cfinclude template="header.cfm">
 
 <div class="page-header">
 	<h1>
-		FAQ Edit
-				
+		FAQ Edit		
 	</h1>
 </div>
 
@@ -22,14 +37,14 @@
 		<label class="col-sm-3 control-label no-padding-right" for="question"> Question </label>
 
 		<div class="col-sm-9">
-			<textarea id="question" class="form-control" rows="4">#htmlEditFormat(faq.question)#</textarea>
+			<textarea id="question" name="question" class="form-control" rows="4">#htmlEditFormat(faq.question)#</textarea>
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="col-sm-3 control-label no-padding-right" for="answer"> Answer </label>
 
 		<div class="col-sm-9">
-			<textarea id="question" class="form-control" rows="4">#htmlEditFormat(faq.answer)#</textarea>
+			<textarea id="answer" name="answer" class="form-control" rows="4">#htmlEditFormat(faq.answer)#</textarea>
 		</div>
 	</div>
 	<div class="form-group">
@@ -38,10 +53,27 @@
 		--->
 		<div class="col-sm-3 control-label no-padding-right"> Status </div>
 		<div class="col-sm-9">
-			<input type="checkbox" id="deleted"> <label for="deleted">Deleted</label><br/>
-			<input type="checkbox" id="edited"> <label for="edited">Edited</label><br/>
-			<input type="checkbox" id="rejected"> <label for="rejected">Rejected</label><br/>
+			<input type="checkbox" id="deleted" name="deleted" <cfif faq.deleted>checked</cfif>> <label for="deleted">Deleted</label><br/>
+			<input type="checkbox" id="edited" name="edited" <cfif faq.edited>checked</cfif>> <label for="edited">Edited</label><br/>
+			<input type="checkbox" id="rejected" name="rejected" <cfif faq.rejected>checked</cfif>> <label for="rejected">Rejected</label><br/>
 		</div>
+	</div>
+
+	<div class="clearfix form-actions">
+		<div class="col-md-offset-3 col-md-9">
+			<button class="btn btn-info" type="submit" name="save">
+				<i class="icon-ok bigger-110"></i>
+				Submit
+			</button>
+
+			&nbsp; &nbsp; &nbsp;
+			<button class="btn" type="submit" name="cancel">
+				<i class="icon-undo bigger-110"></i>
+				Cancel
+			</button>
+		</div>
+	</div>
+
 </form>
 </cfoutput>
 
