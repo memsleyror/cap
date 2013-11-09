@@ -20,7 +20,7 @@
 	<cfset faq.edited = structKeyExists(form,"edited")>
 	<cfset faq.faq_id = url.faq_id>
 	<cfset application.faqService.updateFaq(faq)>
-	<cflocation url="faq_edit.cfm?faq_id=#faq.faq_id#" addToken="false">
+	<cflocation url="faq_edit.cfm?faq_id=#faq.faq_id#&showsuccess=1" addToken="false">
 </cfif>
 
 <cfinclude template="header.cfm">
@@ -30,6 +30,21 @@
 		FAQ Edit		
 	</h1>
 </div>
+
+<cfif structKeyExists(url, "showsuccess")>
+	<div class="alert alert-block alert-success">
+		<button type="button" class="close" data-dismiss="alert">
+			<i class="icon-remove"></i>
+		</button>
+
+		<p>
+			<strong>
+				<i class="icon-ok"></i>
+				FAQ Saved
+			</strong>
+		</p>
+	</div>
+</cfif>
 
 <cfoutput>
 <form class="form-horizontal" role="form" method="post">
