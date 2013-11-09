@@ -24,7 +24,7 @@
 <cfinvoke component="projects" method="getMoods" returnvariable="moods"> 	
 
 <!--- get faqs for project --->
-<cfset faqs = application.faqService.getAnsweredQuestions(url.project_id)>
+<cfset faqs = application.faqService.getAnsweredQuestions(session.proj.project_id)>
 
 <!---button caption --->
 <cfset ButtonText="Update">	
@@ -201,13 +201,13 @@
 					<cfoutput query="faqs">
 						<div class="text">
 							<i class="icon-quote-left"></i>
-							<a href="faq.cfm?faq_id=#faq_id#&project_id=#url.project_id#">#question#</a>
+							<a href="faq.cfm?faq_id=#faq_id#&project_id=#session.proj.project_id#">#question#</a>
 						</div>
 					</cfoutput>
 				</div>
 			
 				<cfoutput>
-				<form method="post" action="faq.cfm?project_id=#url.project_id#">
+				<form method="post" action="faq.cfm?project_id=#session.proj.project_id#">
 					<div class="form-actions">
 						<div class="input-group">
 							<input placeholder="Type your question here ..." type="text" class="form-control" name="newfaq" />

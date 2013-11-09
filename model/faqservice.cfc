@@ -23,6 +23,10 @@ component {
 		for(var i=1;i <= listLen(results.columnList); i++) {
 			faqResult[listGetAt(results.columnList,i)] = results[listGetAt(results.columnList,i)][1];
 		}
+		//do some quick massaging of the 3 boolean flags
+		if(!isBoolean(faqResult.edited)) faqResult.edited = false;
+		if(!isBoolean(faqResult.deleted)) faqResult.deleted = false;
+		if(!isBoolean(faqResult.rejected)) faqResult.rejected = false;
 		return faqResult;
 	}
 
