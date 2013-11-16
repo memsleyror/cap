@@ -186,25 +186,68 @@
 
 </div><!---end of row 2 --->
 
-
+<!---third row begins --->
 <div class="row">
+	
+	<!---third row, first cell --->
 	<div class="col-sm-6">
+		
 		<div class="widget-box transparent" id="recent-box">
+			
+			<!---header open --->
 			<div class="widget-header">
 				<h4 class="lighter smaller">
-					<i class="icon-comment blue"></i>
+					<!--- <i class="icon-comment blue"></i> --->
 					FAQs
 				</h4>
-			</div>
+			</div><!---header close --->
+			
+			
 			<div class="widget-body">
-				<div class="itemdiv">
-					<cfoutput query="faqs">
-						<div class="text">
-							<i class="icon-quote-left"></i>
-							<a href="faq.cfm?faq_id=#faq_id#&project_id=#session.proj.project_id#">#question#</a>
-						</div>
-					</cfoutput>
-				</div>
+				
+				<!---faq portion starts --->
+				
+				<div class="comments">
+					<div class="itemdiv commentdiv">
+				
+						<!--- <div class="itemdiv"> --->
+							<br>
+							<cfoutput query="faqs">
+								
+								<div class="user">
+									<img alt="Bob Doe's Avatar" src="assets/avatars/avatar.png" />
+								</div>
+								
+								<div class="body">
+									
+									<div class="name">
+										<!--- <a href="#">Bob Doe</a>--->
+										Mike E	
+									</div> 
+									<!---close name --->
+										
+									<div class="time">
+										<i class="icon-time"></i>
+										<span class="green">1 day ago</span>
+									</div>	
+									
+									<div class="text">
+										<i class="icon-quote-left"></i>
+										<a href="faq.cfm?faq_id=#faq_id#&project_id=#session.proj.project_id#">#question#</a>
+									</div>
+								
+								</div> <!---close body --->
+							
+							
+							</cfoutput>
+						
+						
+						<!--- </div> --->
+						
+					</div><!---close itemdiv commentdiv --->	
+				</div><!---close comments --->		
+						
+				<!---faq portion ends --->
 			
 				<cfoutput>
 				<form method="post" action="faq.cfm?project_id=#session.proj.project_id#">
@@ -222,10 +265,10 @@
 				</form>
 				</cfoutput>
 
-			</div>
-		</div>
-	</div>
-</div>
+			</div><!---widget body --->
+		</div><!---widget box --->
+	</div><!---span --->
+</div><!---end of third row --->
 
 
 
