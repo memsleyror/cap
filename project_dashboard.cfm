@@ -105,7 +105,8 @@
 			<div class="widget-body">
 				<div class="widget-main padding-4">
 					Currently, I feel:<br>
-					<cfoutput>#mood_name#</cfoutput><br><br>
+					<cfoutput>#mood_name#</cfoutput>
+					<img alt="Bob Doe's Avatar" src="assets/images/happy.png" />
 					
 					<cfform action="projectmood_update.cfm" class="form-horizontal" role="form">
 					
@@ -186,6 +187,8 @@
 
 </div><!---end of row 2 --->
 
+<div class="hr hr32 hr-dotted"></div>
+
 <!---third row begins --->
 <div class="row">
 	
@@ -200,13 +203,19 @@
 					<!--- <i class="icon-comment blue"></i> --->
 					FAQs
 				</h4>
+				
+				<div class="widget-toolbar">
+					<a href="#" data-action="collapse">
+						<i class="icon-chevron-up"></i>
+					</a>
+				</div>
 			</div><!---header close --->
 			
 			
 			<div class="widget-body">
 				
 				<!---faq portion starts --->
-				
+			<div id="comment-tab" class="tab-pane">	
 				<div class="comments">
 					<div class="itemdiv commentdiv">
 				
@@ -236,8 +245,12 @@
 										<a href="faq.cfm?faq_id=#faq_id#&project_id=#session.proj.project_id#">#question#</a>
 									</div>
 								
+								
+									
+									<!--- <div class=" hr"></div>--->
+								
 								</div> <!---close body --->
-							
+									
 							
 							</cfoutput>
 						
@@ -246,6 +259,7 @@
 						
 					</div><!---close itemdiv commentdiv --->	
 				</div><!---close comments --->		
+			</div><!---closes tab pane--->	
 						
 				<!---faq portion ends --->
 			
@@ -268,6 +282,7 @@
 			</div><!---widget body --->
 		</div><!---widget box --->
 	</div><!---span --->
+
 </div><!---end of third row --->
 
 
