@@ -104,27 +104,45 @@
 
 			<div class="widget-body">
 				<div class="widget-main padding-4">
-					Currently, I feel:<br>
-					<cfoutput>#mood_name#</cfoutput>
-					<img alt="Bob Doe's Avatar" src="assets/images/happy.png" />
+					<!--- Currently, I feel:<br>
+					<cfoutput>#mood_name#</cfoutput>--->
+					
+				<table>	
+				
+				<tr><td align="center">
+					<cfif mood_name Is "positive">
+						<img alt="Bob Doe's Avatar" src="assets/images/positive_big.png" />
+					<cfelseif mood_name Is "negative">	
+						<img alt="Bob Doe's Avatar" src="assets/images/negative_big.png" />
+					<cfelseif mood_name Is "confused">	
+						<img alt="Bob Doe's Avatar" src="assets/images/confused_big.png" />	
+					<cfelse>
+						<img alt="Bob Doe's Avatar" src="assets/images/neutral_big.png" />		
+					</cfif>
 					
 					<cfform action="projectmood_update.cfm" class="form-horizontal" role="form">
 					
 					<cfoutput>
 						<input type="hidden" name="userprojectmood_id" value="#mymood.userprojectmood_id#">
 					</cfoutput>
+				</td></tr>	
 					
 					<!--- <cfselect name="mood_id" class="form-control" query="moods" value="mood_id" display="mood_name" <!--- selected="#VARIABLES.mood_id#"---> ></cfselect>--->
-					
-					
-						<button class="btn btn-success" name="button_pos" input type="submit">Positive</button>
+				<tr><td align="center">
+						<INPUT TYPE="image" SRC="assets/images/positive.png" ALT="positive" value="save" NAME="button_pos"> 
+						<INPUT TYPE="image" SRC="assets/images/negative.png" ALT="negative" value="save" NAME="button_neg"> 
+						<INPUT TYPE="image" SRC="assets/images/confused.png" ALT="confused" value="save" NAME="button_confused"> 
+						<INPUT TYPE="image" SRC="assets/images/neutral.png" ALT="neutral" value="save" NAME="button_neutral"> 
+				</td></tr>	
+						<!--- <button class="btn btn-success" name="button_pos" input type="submit">Positive</button>
 						<button class="btn btn-danger" name="button_neg" input type="submit">Negative</button>
 						<button class="btn btn-grey" name="button_confused" input type="submit">Confused</button>
-						<button class="btn btn-yellow" name="button_neutral" input type="submit">Neutral</button>
+						<button class="btn btn-yellow" name="button_neutral" input type="submit">Neutral</button>--->
 					
 					<!--- <button class="btn btn-purple">Purple</button>--->
 					
 					</cfform>
+				</table>	
 					
 				</div><!--- /widget-main --->
 			</div><!--- /widget-body --->
@@ -224,7 +242,7 @@
 							<cfoutput query="faqs">
 								
 								<div class="user">
-									<img alt="Bob Doe's Avatar" src="assets/avatars/avatar.png" />
+									<img alt="Bob Doe's Avatar" src="assets/avatars/my_avatar.png" />
 								</div>
 								
 								<div class="body">
