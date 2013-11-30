@@ -18,6 +18,7 @@
 			<a href="versions.cfm">Versions</a><br>
 			<a href="moods.cfm">Moods</a><br>
 			<a href="usercompany.cfm">User-Company</a><br>
+			<a href="feedtypes.cfm">Feedtypes</a><br>
 
 <!--- INCLUDE FOOTER                                                                --->
 <cfinclude template="footer.cfm">

@@ -577,8 +577,13 @@
 								</li>
 							</ul>
 						</li>
+						
+						<cfif session.menuTracker.menuTitle is "Manage Phase">
+							<li class="active open">
+						<cfelse>			
+							<li>
+						</cfif>			
 
-						<li>
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-edit"></i>
 								<span class="menu-text"> Manage Phase </span>
@@ -587,33 +592,19 @@
 							</a>
 
 							<ul class="submenu">
-								<li>
-									<a href="form-elements.html">
+								<cfif session.menuTracker.subMenuTitle is "Project Feed">
+									<li class="active">
+								<cfelse>
+									<li>
+								</cfif>		
+									<a href="projectfeed.cfm">
 										<i class="icon-double-angle-right"></i>
-										Form Elements
+										Project Feed
 									</a>
 								</li>
-
-								<li>
-									<a href="form-wizard.html">
-										<i class="icon-double-angle-right"></i>
-										Wizard &amp; Validation
-									</a>
-								</li>
-
-								<li>
-									<a href="wysiwyg.html">
-										<i class="icon-double-angle-right"></i>
-										Wysiwyg &amp; Markdown
-									</a>
-								</li>
-
-								<li>
-									<a href="dropzone.html">
-										<i class="icon-double-angle-right"></i>
-										Dropzone File Upload
-									</a>
-								</li>
+								
+								
+								
 							</ul>
 						</li>
 

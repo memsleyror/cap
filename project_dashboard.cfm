@@ -184,12 +184,19 @@
 
 	<!---second row, second cell --->
 	<div class="col-sm-6">
-		<div class="widget-box ">
+		<div class="widget-box transparent" id="recent-box">
 			<div class="widget-header">
 				<h4 class="lighter smaller">
 					<!--- <i class="icon-comment blue"></i> --->
 					Project Feed
 				</h4>
+				
+				<div class="widget-toolbar">
+					<a href="#" data-action="collapse">
+						<i class="icon-chevron-up"></i>
+					</a>
+				</div>
+				
 			</div>
 				
 				<div class="widget-body">
