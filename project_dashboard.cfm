@@ -23,6 +23,13 @@
 <!---get moods --->
 <cfinvoke component="projects" method="getMoods" returnvariable="moods"> 	
 
+<!---get all feeds --->
+<cfinvoke component="projectfeed" method="getProjFeeds" project_id="#session.proj.project_id#" returnvariable="projprojectfeeds">
+
+	<!---save info to variables --->
+	<cfset projectfeed_text=Trim(projprojectfeeds.projectfeed_text)>
+	
+
 <!--- get faqs for project --->
 <cfset faqs = application.faqService.getAnsweredQuestions(session.proj.project_id)>
 
@@ -203,8 +210,47 @@
 				
 						<div class="widget-main padding-4">			
 						
+							<div class="timeline-container">
+									<div class="timeline-label">
+													<span class="label label-primary arrowed-in-right label-lg">
+														<b>Today</b>
+													</span>
+									</div><!---timeline label --->
+							
+								<div class="timeline-items"><!---does not repeat --->
+
+								<!---one timeline block starts here --->	
+									<div class="timeline-item clearfix">
+										
+												<cfoutput query="projprojectfeeds">
+										
+														<div class="timeline-info">
+															<i class="timeline-indicator icon-food btn btn-success no-hover"></i>
+														</div>
+
+														<div class="widget-box transparent">
+															<div class="widget-header widget-header-small hidden"></div>
+
+															<div class="widget-body">
+																<div class="widget-main">
+																	#projectfeed_text#
+																	<div class="pull-right">
+																		<i class="icon-time bigger-110"></i>
+																		12:30
+																	</div>
+																</div>
+															</div>
+														</div>
+														
+												</cfoutput>		
+									</div>
 						
-	
+						
+								<!---timeline block ends here --->
+						
+						
+								</div><!---timeline items --->
+							</div><!---timeline container --->
 						</div><!--- /widget-main --->
 				</div><!--- /widget-body --->
 		</div><!--- /widget-box --->
@@ -256,7 +302,7 @@
 									
 									<div class="name">
 										<!--- <a href="#">Bob Doe</a>--->
-										Mike E	
+										#session.auth.user_firstname#  #session.auth.user_lastname#
 									</div> 
 									<!---close name --->
 										

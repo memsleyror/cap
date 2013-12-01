@@ -1,6 +1,6 @@
 ﻿
 
-<!---get all casesforchange --->
+<!---get all feeds --->
 <cfinvoke component="projectfeed" method="list" returnvariable="projectfeeds">
 
 <!--- INCLUDE HEADER                                                               --->

@@ -1,6 +1,6 @@
 ﻿<cfcomponent>
 
-	<!---list of all projectfeeds --->
+	<!---list of all projectfeeds for all projects--->
 		<cffunction name="list" returntype="query" hint="list all project feeds" > 
 			<cfquery name="projectfeeds">
 				SELECT projectfeed_id, projectfeed_title, projectfeed_text, projectfeed_date, projectfeed.project_id, projects.project_name
@@ -8,6 +8,17 @@
 				ORDER BY projectfeed_date
 			</cfquery>
 			<cfreturn projectfeeds>	 
+		</cffunction>
+		
+		<!---list of all projectfeeds for a specific project--->
+		<cffunction name="getProjFeeds" returntype="query" hint="list all project feeds" > 
+			<cfquery name="projprojectfeeds">
+				SELECT projectfeed_id, projectfeed_title, projectfeed_text, projectfeed_date, projectfeed.project_id, projects.project_name
+				FROM projectfeed INNER JOIN projects ON projectfeed.project_id = projects.project_id
+				WHERE projectfeed.project_id=#ARGUMENTS.project_id#
+				ORDER BY projectfeed_date
+			</cfquery>
+			<cfreturn projprojectfeeds>	 
 		</cffunction>
 		
 		<!---get a specific projectfeed --->
