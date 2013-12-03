@@ -308,7 +308,7 @@
 										
 									<div class="time">
 										<i class="icon-time"></i>
-										<span class="green">1 day ago</span>
+										<span class="green">#dateFormat(datecreated,"mmm d, yyyy")#</span>
 									</div>	
 									
 									<div class="text">
