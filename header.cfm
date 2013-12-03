@@ -284,11 +284,17 @@
 
 						<li class="light-blue">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="assets/avatars/my_avatar.png" alt="Jason's Photo" />
+								<cfoutput>
+								<cfif len(session.auth.image_file)>
+								<img class="nav-user-photo" src="images/profiles/#session.auth.image_file#" alt="#session.auth.user_firstname#'s Photo" />
+								<cfelse>
+								<img class="nav-user-photo" src="assets/avatars/avatar2.png" alt="#session.auth.user_firstname#'s Photo" />
+								</cfif>
 								<span class="user-info">
 									<small>Welcome,</small>
-									Mike
+									#session.auth.user_firstname#
 								</span>
+								</cfoutput>
 
 								<i class="icon-caret-down"></i>
 							</a>

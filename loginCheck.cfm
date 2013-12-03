@@ -7,7 +7,7 @@
 <!---find record with this username and pw, if no record then pw not valid --->
 
 <cfquery name="getUser">
-	SELECT user_id, user_firstname, user_lastname, role_id
+	SELECT user_id, user_firstname, user_lastname, role_id, image_file
 	FROM users
 	WHERE user_login = <cfqueryparam cfsqltype="cf_sql_varchar" value="#form.user_login#" >
 	AND user_password =  <cfqueryparam cfsqltype="cf_sql_varchar" value="#form.user_password#" >
@@ -22,6 +22,7 @@
 	<cfset session.auth.user_firstname = getUser.user_firstname>
 	<cfset session.auth.user_lastname = getUser.user_lastname>
 	<cfset session.auth.role_id = getUser.role_id>
+	<cfset session.auth.image_file = getUser.image_file>
 	
 	<cflocation url="home.cfm" >
 	

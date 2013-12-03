@@ -14,7 +14,7 @@
 		<cffunction name="get" returntype="query" hint="get user details">
 			<cfargument name="user_id" type="numeric" required="yes" hint="user ID" >
 			<cfquery name="user">
-				SELECT user_id, user_login, user_password, user_firstname, user_lastname, user_email, role_id, user_default_project_id
+				SELECT user_id, user_login, user_password, user_firstname, user_lastname, user_email, role_id, user_default_project_id, image_file
 				FROM users
 				WHERE user_id=#ARGUMENTS.user_id#
 			</cfquery>	 
@@ -59,6 +59,7 @@
 			<cfargument name="user_lastname" type="string" required="yes" hint="user last name">
 			<cfargument name="user_email" type="string" required="yes" hint="user email">	
 			<cfargument name="role_id" type="numeric" required="yes" hint="user role ID">
+			<cfargument name="image_file" type="string" required="yes" hint="user role ID">
 			
 			<!---update user --->
 			<cfquery>
@@ -68,7 +69,8 @@
 					user_firstname='#Trim(ARGUMENTS.user_firstname)#',
 					user_lastname='#Trim(ARGUMENTS.user_lastname)#',
 					user_email='#Trim(ARGUMENTS.user_email)#',
-					role_id=#ARGUMENTS.role_id#
+					role_id=#ARGUMENTS.role_id#,
+					image_file = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.image_file#">
 				WHERE user_id=#ARGUMENTS.user_id#
 			</cfquery>				
 			<cfreturn true>

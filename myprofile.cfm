@@ -68,7 +68,7 @@
 
 
 <!---add/update user form --->
-<cfform action="user_process.cfm">
+<cfform action="user_process.cfm" enctype="multipart/form-data">
 	
 <cfif EditMode>
 	<!---embed primary key as hidden field --->
@@ -78,94 +78,107 @@
 </cfif>		
 
 
-
-
-
-
 		<div id="user-profile-2" class="user-profile">
 				
 											
 
-											<div class="tab-content no-border padding-24">
-												<div id="home" class="tab-pane in active">
-													<div class="row">
-														<div class="col-xs-12 col-sm-3 center">
-															<span class="profile-picture">
-																<img class="editable img-responsive" alt="Alex's Avatar" id="avatar2" src="assets/avatars/profile-pic.jpg" />
-															</span>
+			<div class="tab-content no-border padding-24">
+				<div id="home" class="tab-pane in active">
+					<div class="row">
+						<div class="col-xs-12 col-sm-3 center">
+							<span class="profile-picture">
+								<img class="editable img-responsive" alt="Alex's Avatar" id="avatar2" 
+								<cfif len(session.auth.image_file)>
+									<cfoutput>
+								src="images/profiles/#session.auth.image_file#"
+									</cfoutput>
+								<cfelse>
+								src="assets/avatars/avatar2.jpg"
+								</cfif>
+								 />
+							</span>
 
-															<div class="space space-4"></div>
+							<div class="space space-4"></div>
 
-															<a href="#" class="btn btn-sm btn-block btn-success">
-																<i class="icon-plus-sign bigger-120"></i>
-																<span class="bigger-110">Add as a friend</span>
-															</a>
+							<a href="#" class="btn btn-sm btn-block btn-success">
+								<i class="icon-plus-sign bigger-120"></i>
+								<span class="bigger-110">Add as a friend</span>
+							</a>
 
-															<a href="#" class="btn btn-sm btn-block btn-primary">
-																<i class="icon-envelope-alt bigger-110"></i>
-																<span class="bigger-110">Send a message</span>
-															</a>
-														</div><!-- /span -->
+							<a href="#" class="btn btn-sm btn-block btn-primary">
+								<i class="icon-envelope-alt bigger-110"></i>
+								<span class="bigger-110">Send a message</span>
+							</a>
+						</div><!-- /span -->
 
-														<div class="col-xs-12 col-sm-9">
-															<h4 class="blue">
-																<span class="middle">Alex M. Doe</span>
+						<div class="col-xs-12 col-sm-9">
+							<h4 class="blue">
+								<span class="middle">Alex M. Doe</span>
 
-																<span class="label label-purple arrowed-in-right">
-																	<i class="icon-circle smaller-80 align-middle"></i>
-																	online
-																</span>
-															</h4>
+								<span class="label label-purple arrowed-in-right">
+									<i class="icon-circle smaller-80 align-middle"></i>
+									online
+								</span>
+							</h4>
 
-															<div class="profile-user-info">
-																<div class="profile-info-row">
-																	<div class="profile-info-name"> Login </div>
+							<div class="profile-user-info">
+								<div class="profile-info-row">
+									<div class="profile-info-name"> Login </div>
 
-																	<div class="profile-info-value">
-																		<span><cfinput type="text" name="user_login" value="#user_login#" message="user login is required" required="yes" validateAt="onSubmit,onServer" size="50" maxlength="100"></span>
-																	</div>
-																</div>
+									<div class="profile-info-value">
+										<span><cfinput type="text" name="user_login" value="#user_login#" message="user login is required" required="yes" validateAt="onSubmit,onServer" size="50" maxlength="100"></span>
+									</div>
+								</div>
 
-																<div class="profile-info-row">
-																	<div class="profile-info-name"> Password </div>
+								<div class="profile-info-row">
+									<div class="profile-info-name"> Password </div>
 
-																	<div class="profile-info-value">
-																		<span><cfinput type="text" name="user_password" value="#user_password#" message="user password is required" required="yes" validateAt="onSubmit,onServer" size="50" maxlength="100"></span>
-																	</div>
-																</div>
+									<div class="profile-info-value">
+										<span><cfinput type="text" name="user_password" value="#user_password#" message="user password is required" required="yes" validateAt="onSubmit,onServer" size="50" maxlength="100"></span>
+									</div>
+								</div>
 
-																<div class="profile-info-row">
-																	<div class="profile-info-name"> First Name </div>
+								<div class="profile-info-row">
+									<div class="profile-info-name"> First Name </div>
 
-																	<div class="profile-info-value">
-																		<span><cfinput type="text" name="user_firstname" value="#user_firstname#" message="user first name is required" required="yes" validateAt="onSubmit,onServer" size="50" maxlength="100"></span>
-																	</div>
-																</div>
+									<div class="profile-info-value">
+										<span><cfinput type="text" name="user_firstname" value="#user_firstname#" message="user first name is required" required="yes" validateAt="onSubmit,onServer" size="50" maxlength="100"></span>
+									</div>
+								</div>
 																
-																<div class="profile-info-row">
-																	<div class="profile-info-name"> Last Name </div>
+								<div class="profile-info-row">
+									<div class="profile-info-name"> Last Name </div>
 
-																	<div class="profile-info-value">
-																		<span><cfinput type="text" name="user_lastname" value="#user_lastname#" message="user last name is required" required="yes" validateAt="onSubmit,onServer" size="50" maxlength="100"></span>
-																	</div>
-																</div>
+									<div class="profile-info-value">
+										<span><cfinput type="text" name="user_lastname" value="#user_lastname#" message="user last name is required" required="yes" validateAt="onSubmit,onServer" size="50" maxlength="100"></span>
+									</div>
+								</div>
 
-																<div class="profile-info-row">
-																	<div class="profile-info-name"> Email </div>
+								<div class="profile-info-row">
+									<div class="profile-info-name"> Email </div>
 
-																	<div class="profile-info-value">
-																		<span><cfinput type="text" name="user_email" value="#user_email#" message="user email is required" required="yes" validateAt="onSubmit,onServer" size="50" maxlength="100"></span>
-																	</div>
-																</div>
+									<div class="profile-info-value">
+										<span><cfinput type="text" name="user_email" value="#user_email#" message="user email is required" required="yes" validateAt="onSubmit,onServer" size="50" maxlength="100"></span>
+									</div>
+								</div>
 
-																<div class="profile-info-row">
-																	<div class="profile-info-name"> Role </div>
+								<div class="profile-info-row">
+									<div class="profile-info-name"> Role </div>
 
-																	<div class="profile-info-value">
-																		<span><cfselect name="role_id" query="roles" value="role_id" display="role_name" selected="#VARIABLES.role_id#"></cfselect></span>
-																	</div>
-																</div>
-															</div>
+									<div class="profile-info-value">
+										<span><cfselect name="role_id" query="roles" value="role_id" display="role_name" selected="#VARIABLES.role_id#"></cfselect></span>
+									</div>
+								</div>
+
+								<div class="profile-info-row">
+									<div class="profile-info-name"> New Image </div>
+
+									<div class="profile-info-value">
+										<span><input type="file" name="newimage" accept="image/*"></span>
+									</div>
+								</div>
+
+							</div>
 
 															<div class="hr hr-8 dotted"></div>
 
