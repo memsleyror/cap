@@ -32,11 +32,10 @@ component {
 		return faqResult;
 	}
 
-	//TODO: Add user columns here too
 	public query function getQuestions(required projectidfk) {
 
 		var q = new com.adobe.coldfusion.query();
-		q.setSQL("select faq_id, question, answer, rejected, deleted, edited, datecreated, user_id from faq where projectidfk = :pid order by datecreated desc");
+		q.setSQL("select f.faq_id, f.question, f.answer, f.datecreated, f.user_id, u.user_firstname, u.user_lastname, u.image_file from faq f, users u where f.projectidfk = :pid and f.user_id = u.user_id order by f.datecreated desc");
 		q.addParam(name="pid", value=arguments.projectidfk);
 		var results = q.execute().getResult();
 		return results;
