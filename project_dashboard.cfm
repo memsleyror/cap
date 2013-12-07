@@ -225,7 +225,7 @@
 												<cfoutput query="projprojectfeeds">
 										
 														<div class="timeline-info">
-															<i class="timeline-indicator icon-food btn btn-success no-hover"></i>
+															<i class="timeline-indicator icon-microphone btn btn-success no-hover"></i>
 														</div>
 
 														<div class="widget-box transparent">
