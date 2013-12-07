@@ -12,6 +12,9 @@
 	
 	<cffunction name="onApplicationStart" output="false" returnType="boolean">
 		<cfset application.faqService = createObject("component", "model.faqservice")>
+		<!---
+		<cfset application.userService = createObject("component", "model.userservice")>
+		--->
 		<cfreturn true>
 	</cffunction>
 

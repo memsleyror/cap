@@ -295,7 +295,13 @@
 							<cfoutput query="faqs" maxrows="5">
 								
 								<div class="user">
-									<img alt="Bob Doe's Avatar" src="assets/avatars/my_avatar.png" />
+									<img title="#user_firstname# #user_lastname#'s Avatar"
+									<cfif image_file neq "">
+										src="images/profiles/#image_file#"
+									<cfelse>
+									 src="assets/avatars/avatar2.png"
+									 </cfif>
+									  />
 								</div>
 								
 								<div class="body">

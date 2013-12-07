@@ -3,7 +3,7 @@
 <cfparam name="url.faq_id" default="">
 
 <cfif structKeyExists(form, "newfaq") and len(form.newfaq)>
-	<cfset application.faqService.addQuestion(form.newfaq,url.project_id)>
+	<cfset application.faqService.addQuestion(form.newfaq,url.project_id,session.auth.user_id)>
 </cfif>
 
 <!--- This should be abstracted better. --->
