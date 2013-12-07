@@ -34,7 +34,7 @@ component {
 	public query function getQuestions(required projectidfk) {
 
 		var q = new com.adobe.coldfusion.query();
-		q.setSQL("select faq_id, question, answer, rejected, deleted, edited, datecreated from faq where projectidfk = :pid");
+		q.setSQL("select faq_id, question, answer, rejected, deleted, edited, datecreated from faq where projectidfk = :pid order by datecreated desc");
 		q.addParam(name="pid", value=arguments.projectidfk);
 		var results = q.execute().getResult();
 		return results;
@@ -43,7 +43,7 @@ component {
 	public query function getAnsweredQuestions(required projectidfk) {
 
 		var q = new com.adobe.coldfusion.query();
-		q.setSQL("select faq_id, question, answer, datecreated from faq where answer is not null and (deleted is null or deleted = 0) and (rejected is null or rejected = 0) and projectidfk = :pid");
+		q.setSQL("select faq_id, question, answer, datecreated from faq where answer is not null and (deleted is null or deleted = 0) and (rejected is null or rejected = 0) and projectidfk = :pid order by datecreated desc");
 		q.addParam(name="pid", value=arguments.projectidfk);
 		var results = q.execute().getResult();
 		return results;

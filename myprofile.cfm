@@ -93,7 +93,7 @@
 								src="images/profiles/#session.auth.image_file#"
 									</cfoutput>
 								<cfelse>
-								src="assets/avatars/avatar2.jpg"
+								src="assets/avatars/avatar2.png"
 								</cfif>
 								 />
 							</span>

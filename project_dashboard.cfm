@@ -292,7 +292,7 @@
 				
 						<!--- <div class="itemdiv"> --->
 							<br>
-							<cfoutput query="faqs">
+							<cfoutput query="faqs" maxrows="5">
 								
 								<div class="user">
 									<img alt="Bob Doe's Avatar" src="assets/avatars/my_avatar.png" />

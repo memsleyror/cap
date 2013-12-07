@@ -15,11 +15,16 @@
 
 		<cfif upload.filewassaved>
 			<!--- resize to 150x150 --->
+			<cfset newId = replace(createUUID(), "-","_","all")>
 			<cfset tmpFile = upload.serverdirectory & "/" & upload.serverfile>
 			<cfset img = imageRead(tmpFile)>
 			<cfset imageScaleToFit(img, 150, 150)>
-			<cfset imageWrite(img, expandPath("./images/profiles/#form.user_id#.jpg"))>
-			<cfset imageFile = form.user_id & ".jpg">
+			<cfset imageWrite(img, expandPath("./images/profiles/#form.user_id#_#newId#.jpg"))>
+			<cfset imageFile = form.user_id & "_" & newId & ".jpg">
+			<!--- clean up old --->
+			<cfif len(session.auth.image_file) and fileExists(expandPath("./images/profiles/#session.auth.image_file#"))>
+				<cfset fileDelete(expandPath("./images/profiles/#session.auth.image_file#"))>
+			</cfif>
 		</cfif>
 	</cfif>
 </cfif>
@@ -40,6 +45,11 @@
 	<cfinvokeargument name="image_file" value="#imageFile#">
 	<!--- <cfinvokeargument name="user_default_project_id" value="#Int(FORM.user_default_project_id)#">--->
 	
+	<cfset session.auth.user_firstname = form.user_firstname>
+	<cfset session.auth.user_lastname = form.user_lastname>
+	<cfif imageFile neq "">
+		<cfset session.auth.image_file = imageFile>
+	</cfif>
 	
 </cfinvoke>
 
