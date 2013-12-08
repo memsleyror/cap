@@ -14,7 +14,7 @@
 		<cffunction name="get" returntype="query" hint="get feedtype details">
 			<cfargument name="feedtype_id" type="numeric" required="yes" hint="feedtype ID" >
 			<cfquery name="feedtype">
-				SELECT feedtype_id, feedtype_name, feedtype_icon
+				SELECT feedtype_id, feedtype_name, feedtype_icon, feedtype_button
 				FROM feedtypes
 				WHERE feedtype_id=#ARGUMENTS.feedtype_id#
 			</cfquery>	 
@@ -27,13 +27,15 @@
 			<!---method arguments --->
 			<cfargument name="feedtype_name" type="string" required="yes" hint="feedtype name">
 			<cfargument name="feedtype_icon" type="string" required="yes" hint="feedtype icon">
+			<cfargument name="feedtype_button" type="string" required="yes" hint="feedtype button">
 			
 			
 			<!---insert feedtype --->
 			<cfquery>
-				INSERT INTO feedtypes(feedtype_name, feedtype_icon)
+				INSERT INTO feedtypes(feedtype_name, feedtype_icon, feedtype_button)
 				VALUES('#Trim(ARGUMENTS.feedtype_name)#',
-						'#Trim(ARGUMENTS.feedtype_icon)#'
+						'#Trim(ARGUMENTS.feedtype_icon)#',
+						'#Trim(ARGUMENTS.feedtype_button)#'
 				)
 			</cfquery>	
 			<cfreturn true>
@@ -46,13 +48,15 @@
 			<cfargument name="feedtype_id" type="numeric" required="yes" hint="feedtype ID">
 			<cfargument name="feedtype_name" type="string" required="yes" hint="feedtype name">
 			<cfargument name="feedtype_icon" type="string" required="yes" hint="feedtype icon">
+			<cfargument name="feedtype_button" type="string" required="yes" hint="feedtype button">
 		
 			
 			<!---update feedtype --->
 			<cfquery>
 				UPDATE feedtypes
 				SET feedtype_name='#Trim(ARGUMENTS.feedtype_name)#',
-					feedtype_icon='#Trim(ARGUMENTS.feedtype_icon)#'
+					feedtype_icon='#Trim(ARGUMENTS.feedtype_icon)#',
+					feedtype_icon='#Trim(ARGUMENTS.feedtype_button)#'
 				WHERE feedtype_id=#ARGUMENTS.feedtype_id#
 			</cfquery>				
 			<cfreturn true>

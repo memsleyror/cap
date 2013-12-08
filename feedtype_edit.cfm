@@ -13,6 +13,7 @@
 	<!---save to variables --->
 	<cfset feedtype_name=Trim(feedtype.feedtype_name)>
 	<cfset feedtype_icon=Trim(feedtype.feedtype_icon)>
+	<cfset feedtype_button=Trim(feedtype.feedtype_button)>
 	
 	
 	<!---form text --->
@@ -24,6 +25,7 @@
 	<!---save to variables --->
 	<cfset feedtype_name="">
 	<cfset feedtype_icon="">
+	<cfset feedtype_button="">
 	
 	
 	<!---form text --->
@@ -71,7 +73,7 @@
 		</td>
 		
 		<td width = "150">
-			<cfinput type="text"  name="feedtype_name" value="#feedtype_name#" id="form-field-1" message="feedtype name is required" required="yes" validateAt="onSubmit,onServer" placeholder="feedtype Name" />
+			<cfinput type="text"  name="feedtype_name" value="#feedtype_name#" id="form-field-1" message="feedtype name is required" required="yes" validateAt="onSubmit,onServer" placeholder="Feedtype Name" />
 		</td>
 	</tr>
 	
@@ -81,9 +83,20 @@
 		</td>
 		
 		<td>	
-			<cfinput type="text" name="feedtype_icon" value="#feedtype_icon#" id="form-field-2" message="feedtype desc is required" required="yes" validateAt="onSubmit,onServer" placeholder="feedtype Description" />
+			<cfinput type="text" name="feedtype_icon" value="#feedtype_icon#" id="form-field-2" message="feedtype desc is required" required="yes" validateAt="onSubmit,onServer" placeholder="Feedtype Icon" />
 		</td>
 	</tr>
+
+	<tr>
+		<td>
+			<label> Feedtype Button </label>
+		</td>
+		
+		<td>	
+			<cfinput type="text" name="feedtype_button" value="#feedtype_button#" id="form-field-2" message="feedtype desc is required" required="yes" validateAt="onSubmit,onServer" placeholder="Feedtype Button" />
+		</td>
+	</tr>
+
 
 </table>
 </fieldset>
