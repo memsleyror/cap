@@ -225,7 +225,7 @@
 										<div class="timeline-item clearfix">
 							
 											<div class="timeline-info">
-												<i class="timeline-indicator icon-#feedtype_icon# btn btn-success no-hover"></i>
+												<i class="timeline-indicator icon-#feedtype_icon# btn #feedtype_button#"></i>
 											</div>
 
 											<div class="widget-box transparent">
