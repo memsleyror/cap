@@ -308,7 +308,7 @@
 									
 									<div class="name">
 										<!--- <a href="#">Bob Doe</a>--->
-										#session.auth.user_firstname#  #session.auth.user_lastname#
+										#user_firstname#  #user_lastname#
 									</div> 
 									<!---close name --->
 										
