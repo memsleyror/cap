@@ -15,6 +15,7 @@
 	
 	<cfinvokeargument name="feedtype_name" value="#Trim(FORM.feedtype_name)#">
 	<cfinvokeargument name="feedtype_icon" value="#Trim(FORM.feedtype_icon)#">
+	<cfinvokeargument name="feedtype_button" value="#Trim(FORM.feedtype_button)#">
 	
 </cfinvoke>
 

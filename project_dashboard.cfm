@@ -220,16 +220,20 @@
 								<div class="timeline-items"><!---does not repeat --->
 
 								<!---one timeline block starts here --->	
-									<div class="timeline-item clearfix">
+									
 										
 												<cfoutput query="projprojectfeeds">
+													
+													<div class="timeline-item clearfix">
 										
 														<div class="timeline-info">
 															<i class="timeline-indicator icon-microphone btn btn-success no-hover"></i>
 														</div>
 
 														<div class="widget-box transparent">
-															<div class="widget-header widget-header-small hidden"></div>
+															<div class="widget-header widget-header-small ">
+																<h5 class="smaller">#projectfeed_title#</h5>
+															</div>
 
 															<div class="widget-body">
 																<div class="widget-main">
@@ -242,8 +246,10 @@
 															</div>
 														</div>
 														
+													</div>	
+														
 												</cfoutput>		
-									</div>
+									
 						
 						
 								<!---timeline block ends here --->
