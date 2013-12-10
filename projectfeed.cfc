@@ -13,9 +13,12 @@
 		<!---list of all projectfeeds for a specific project--->
 		<cffunction name="getProjFeeds" returntype="query" hint="list all project feeds" > 
 			<cfquery name="projprojectfeeds">
-				SELECT projectfeed_id, projectfeed_title, projectfeed_text, projectfeed_date, projectfeed.project_id, projects.project_name
+				SELECT projectfeed_id, projectfeed_title, projectfeed_text, 
+				projectfeed_date, projectfeed.project_id, projects.project_name,
+				feedtypes.feedtype_icon, feedtypes.feedtype_button
 				FROM projectfeed INNER JOIN projects ON projectfeed.project_id = projects.project_id
-				WHERE projectfeed.project_id=#ARGUMENTS.project_id#
+				left join feedtypes on projectfeed.feedtype_id = feedtypes.feedtype_id
+				WHERE projectfeed.project_id=<cfqueryparam cfsqltype="cf_sql_interger" value="#ARGUMENTS.project_id#">
 				ORDER BY projectfeed_date
 			</cfquery>
 			<cfreturn projprojectfeeds>	 

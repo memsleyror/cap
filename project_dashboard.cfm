@@ -220,35 +220,33 @@
 								<div class="timeline-items"><!---does not repeat --->
 
 								<!---one timeline block starts here --->	
-									
+									<cfoutput query="projprojectfeeds">
 										
-												<cfoutput query="projprojectfeeds">
-													
-													<div class="timeline-item clearfix">
-										
-														<div class="timeline-info">
-															<i class="timeline-indicator icon-microphone btn btn-success no-hover"></i>
-														</div>
+										<div class="timeline-item clearfix">
+							
+											<div class="timeline-info">
+												<i class="timeline-indicator icon-#feedtype_icon# btn btn-success no-hover"></i>
+											</div>
 
-														<div class="widget-box transparent">
-															<div class="widget-header widget-header-small ">
-																<h5 class="smaller">#projectfeed_title#</h5>
-															</div>
+											<div class="widget-box transparent">
+												<div class="widget-header widget-header-small ">
+													<h5 class="smaller">#projectfeed_title#</h5>
+												</div>
 
-															<div class="widget-body">
-																<div class="widget-main">
-																	#projectfeed_text#
-																	<div class="pull-right">
-																		<i class="icon-time bigger-110"></i>
-																		12:30
-																	</div>
-																</div>
-															</div>
+												<div class="widget-body">
+													<div class="widget-main">
+														#projectfeed_text#
+														<div class="pull-right">
+															<i class="icon-time bigger-110"></i>
+															12:30
 														</div>
-														
-													</div>	
-														
-												</cfoutput>		
+													</div>
+												</div>
+											</div>
+											
+										</div>	
+											
+									</cfoutput>		
 									
 						
 						
