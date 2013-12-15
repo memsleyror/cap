@@ -56,7 +56,7 @@
 				UPDATE feedtypes
 				SET feedtype_name='#Trim(ARGUMENTS.feedtype_name)#',
 					feedtype_icon='#Trim(ARGUMENTS.feedtype_icon)#',
-					feedtype_icon='#Trim(ARGUMENTS.feedtype_button)#'
+					feedtype_button='#Trim(ARGUMENTS.feedtype_button)#'
 				WHERE feedtype_id=#ARGUMENTS.feedtype_id#
 			</cfquery>				
 			<cfreturn true>
