@@ -14,7 +14,7 @@
 		<cffunction name="getProjFeeds" returntype="query" hint="list all project feeds" > 
 			<cfquery name="projprojectfeeds">
 				SELECT projectfeed_id, projectfeed_title, projectfeed_text, 
-				projectfeed_date, projectfeed.project_id, projects.project_name,
+				date_format(projectfeed_date,'%m-%d-%Y') as projectfeed_date, projectfeed.project_id, projects.project_name,
 				feedtypes.feedtype_icon, feedtypes.feedtype_button
 				FROM projectfeed INNER JOIN projects ON projectfeed.project_id = projects.project_id
 				left join feedtypes on projectfeed.feedtype_id = feedtypes.feedtype_id

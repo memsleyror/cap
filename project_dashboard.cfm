@@ -211,11 +211,51 @@
 						<div class="widget-main padding-4">			
 						
 							<div class="timeline-container">
-									<div class="timeline-label">
-													<span class="label label-primary arrowed-in-right label-lg">
-														<b>Today</b>
-													</span>
-									</div><!---timeline label --->
+
+							<cfoutput query="projprojectfeeds" group="projectfeed_date">
+								<div class="timeline-label">
+									<span class="label label-primary arrowed-in-right label-lg">
+										<b>#application.utils.niceDate(projectfeed_date)#</b>
+									</span>
+								</div><!---timeline label --->
+
+								<cfoutput>
+
+								<div class="timeline-items"><!---does not repeat --->
+										
+									<div class="timeline-item clearfix">
+						
+										<div class="timeline-info">
+											<i class="timeline-indicator icon-#feedtype_icon# btn #feedtype_button#"></i>
+										</div>
+
+										<div class="widget-box transparent">
+											<div class="widget-header widget-header-small ">
+												<h5 class="smaller">#projectfeed_title#</h5>
+											</div>
+
+											<div class="widget-body">
+												<div class="widget-main">
+													#projectfeed_text#
+													<div class="pull-right">
+														<i class="icon-time bigger-110"></i>
+														12:30
+													</div>
+												</div>
+											</div>
+										</div>
+										
+									</div>	
+										
+								</cfoutput>
+							</cfoutput>
+
+								<!---
+								<div class="timeline-label">
+									<span class="label label-primary arrowed-in-right label-lg">
+										<b>Today</b>
+									</span>
+								</div><!---timeline label --->
 							
 								<div class="timeline-items"><!---does not repeat --->
 
@@ -247,7 +287,8 @@
 										</div>	
 											
 									</cfoutput>		
-									
+									--->
+
 						
 						
 								<!---timeline block ends here --->
