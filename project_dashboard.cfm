@@ -246,7 +246,8 @@
 										</div>
 										
 									</div>	
-										
+									
+								</div>		
 								</cfoutput>
 							</cfoutput>
 
