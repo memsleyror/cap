@@ -206,11 +206,11 @@
 				
 			</div>
 				
-				<div class="widget-body">
+				<div class="widget-body"> <!---closes at bottom --->
 				
-						<div class="widget-main padding-4">			
+						<div class="widget-main padding-4">			 <!---closes at bottom --->
 						
-							<div class="timeline-container">
+							<div class="timeline-container"> <!---closes at bottom --->
 
 							<cfoutput query="projprojectfeeds" group="projectfeed_date">
 								<div class="timeline-label">
@@ -221,31 +221,31 @@
 
 								<cfoutput>
 
-								<div class="timeline-items"><!---does not repeat --->
+								<div class="timeline-items"><!---does not repeat, closes at bottom --->
 										
 									<div class="timeline-item clearfix">
 						
 										<div class="timeline-info">
 											<i class="timeline-indicator icon-#feedtype_icon# btn #feedtype_button#"></i>
-										</div>
+										</div> <!---timeline info --->
 
 										<div class="widget-box transparent">
-											<div class="widget-header widget-header-small ">
-												<h5 class="smaller">#projectfeed_title#</h5>
-											</div>
+												<div class="widget-header widget-header-small ">
+													<h5 class="smaller">#projectfeed_title#</h5>
+												</div> <!---widget header --->
 
-											<div class="widget-body">
-												<div class="widget-main">
-													#projectfeed_text#
-													<div class="pull-right">
-														<i class="icon-time bigger-110"></i>
-														12:30
-													</div>
-												</div>
-											</div>
-										</div>
+												<div class="widget-body">
+													<div class="widget-main">
+														#projectfeed_text#
+														<div class="pull-right">
+															<i class="icon-time bigger-110"></i>
+															12:30
+														</div> <!---time --->
+													</div> <!---widget main --->
+												</div> <!---widget body --->
+										</div> <!---widget box transparent --->
 										
-									</div>	
+									</div>	<!---timeline item clearfix --->
 										
 								</cfoutput>
 							</cfoutput>
@@ -294,12 +294,12 @@
 								<!---timeline block ends here --->
 						
 						
-								</div><!---timeline items --->
-							</div><!---timeline container --->
-						</div><!--- /widget-main --->
-				</div><!--- /widget-body --->
-		</div><!--- /widget-box --->
-	</div><!---span --->
+								</div>  <!---timeline items --->
+							</div> <!---timeline container --->
+						</div> <!--- /widget-main --->
+				</div> <!--- /widget-body --->
+		</div> <!--- /widget-box --->
+	</div> <!---span --->
 
 </div><!---end of row 2 --->
 
