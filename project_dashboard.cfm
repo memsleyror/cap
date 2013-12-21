@@ -76,18 +76,33 @@
 				
 				<div class="widget-body">
 				
+						
+					
 						<div class="widget-main padding-4">			
 						<blockquote>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+							<p>We are implementing the SAP DC platform to modernize our supply chain and keep up with the competition. We expect to save $10 million annually when completed.</p>
 
 							<small>
-								Someone famous
-								<cite title="Source Title">Source Title</cite>
+								Jeff Smith, CEO
+								<!--- <cite title="Source Title">Source Title</cite> --->
 							</small>
 						</blockquote>
-						
-	
 						</div><!--- /widget-main --->
+						
+
+<!--- 
+						<div class="widget-main">
+							<p class="alert alert-info">
+								Nunc aliquam enim ut arcu aliquet adipiscing. Fusce dignissim volutpat justo non consectetur. Nulla fringilla eleifend consectetur.
+							</p>
+							
+						</div>
+--->
+
+
+
+
+
 				</div><!--- /widget-body --->
 		</div><!--- /widget-box --->
 	</div><!---span --->
@@ -181,6 +196,61 @@
 
 			<div class="widget-body">
 					<div class="widget-main padding-4">
+				
+				<h4 class="smaller lighter green">
+					<i class="icon-list"></i>
+					To Do
+				</h4>
+				
+				<ul id="tasks" class="item-list">
+																<li class="item-orange clearfix">
+																	<label class="inline">
+																		<input type="checkbox" class="ace" />
+																		<span class="lbl"> Take SAP training</span>
+																	</label>
+
+																	<div class="pull-right easy-pie-chart percentage" data-size="30" data-color="#ECCB71" data-percent="42">
+																		<span class="percent">42</span>%
+																	</div>
+																</li>
+
+																<li class="item-red clearfix">
+																	<label class="inline">
+																		<input type="checkbox" class="ace" />
+																		<span class="lbl"> Review business case</span>
+																	</label>
+
+																	
+																</li>
+
+																<li class="item-default clearfix">
+																	<label class="inline">
+																		<input type="checkbox" class="ace" />
+																		<span class="lbl"> Go over timeline with manager</span>
+																	</label>
+
+																	
+																</li>
+
+																<li class="item-blue clearfix">
+																	<label class="inline">
+																		<input type="checkbox" class="ace" />
+																		<span class="lbl"> Complete skills assessment</span>
+																	</label>
+																</li>
+
+																
+
+																<li class="item-pink clearfix">
+																	<label class="inline">
+																		<input type="checkbox" class="ace" />
+																		<span class="lbl"> Provide feedback</span>
+																	</label>
+																</li>
+															</ul>
+				
+				
+				
 				
 				
 				
