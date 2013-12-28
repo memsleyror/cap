@@ -19,6 +19,7 @@
 			<a href="moods.cfm">Moods</a><br>
 			<a href="usercompany.cfm">User-Company</a><br>
 			<a href="feedtypes.cfm">Feedtypes</a><br>
+			<a href="tasktypes.cfm">Tasktypes</a><br>
 
 <!--- INCLUDE FOOTER                                                                --->
 <cfinclude template="footer.cfm">
