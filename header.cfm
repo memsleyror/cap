@@ -611,6 +611,16 @@
 									</a>
 								</li>
 								
+								<cfif session.menuTracker.subMenuTitle is "Project Tasks">
+									<li class="active">
+								<cfelse>
+									<li>
+								</cfif>		
+									<a href="tasks.cfm">
+										<i class="icon-double-angle-right"></i>
+										Tasks
+									</a>
+								</li>
 								
 								
 							</ul>
