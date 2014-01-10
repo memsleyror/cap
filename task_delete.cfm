@@ -7,7 +7,7 @@
 
 <!---delete task --->
 
-<cfinvoke component="tasks" method="delete" task_id="#URL.task_id#">
+<cfinvoke component="#application.taskService#" method="delete" task_id="#URL.task_id#">
 	
 	
 <cflocation url="tasks.cfm">	

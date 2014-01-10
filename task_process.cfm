@@ -6,7 +6,7 @@
 	<cfset method="add">
 </cfif>
 
-<cfinvoke component="tasks" method="#method#" >
+<cfinvoke component="#application.taskService#" method="#method#" >
 
 	<!---task ID only if update method --->
 	<cfif IsDefined("FORM.task_id")>

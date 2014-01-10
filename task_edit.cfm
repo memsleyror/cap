@@ -8,7 +8,7 @@
 <cfif EditMode>
 	
 	<!---get the task record --->
-	<cfinvoke component="tasks" method="get" task_id="#URL.task_id#" returnvariable="task">
+	<cfinvoke component="#application.taskService#" method="get" task_id="#URL.task_id#" returnvariable="task">
 	
 	<!---save to variables --->
 	<cfset task_desc=Trim(task.task_desc)>
@@ -37,10 +37,10 @@
 </cfif>
 
 <!---get tasktypes --->
-<cfinvoke component="tasks" method="getTasktypes" returnvariable="tasktypes"> 
+<cfinvoke component="#application.taskService#" method="getTasktypes" returnvariable="tasktypes"> 
 
 <!---get projects --->
-<cfinvoke component="tasks" method="getProjects" returnvariable="projects"> 
+<cfinvoke component="#application.taskService#" method="getProjects" returnvariable="projects"> 
 
 <!---page header --->
 <cfinclude template="header.cfm">
