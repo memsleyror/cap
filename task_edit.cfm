@@ -9,13 +9,14 @@
 	
 	<!---get the task record --->
 	<cfinvoke component="#application.taskService#" method="get" task_id="#URL.task_id#" returnvariable="task">
-	
+
 	<!---save to variables --->
 	<cfset task_desc=Trim(task.task_desc)>
 	<cfset task_start_date=DateFormat(task.task_start_date,"MM/DD/YYYY")>
 	<cfset task_end_date=DateFormat(task.task_end_date,"MM/DD/YYYY")>
 	<cfset tasktype_id=task.tasktype_id>
 	<cfset project_id=task.project_id>
+	<cfset selectedRoles = task.roles>
 	
 	<!---form text --->
 	<cfset FormTitle="Update task">
@@ -29,6 +30,7 @@
 	<cfset task_start_date="">
 	<cfset task_end_date="">
 	<cfset tasktype_id="">
+	<cfset selectedRoles = "">
 	
 	<!---form text --->
 	<cfset FormTitle="Add task">
@@ -36,11 +38,15 @@
 	
 </cfif>
 
+
 <!---get tasktypes --->
 <cfinvoke component="#application.taskService#" method="getTasktypes" returnvariable="tasktypes"> 
 
 <!---get projects --->
 <cfinvoke component="#application.taskService#" method="getProjects" returnvariable="projects"> 
+
+<!--- get roles --->
+<cfinvoke component="roles" method="list" returnVariable="roles">
 
 <!---page header --->
 <cfinclude template="header.cfm">
@@ -96,6 +102,17 @@
 	<td><label> Task Type </label>
 	<td><cfselect name="tasktype_id" class="form-control" query="tasktypes" value="tasktype_id" display="tasktype" selected="#VARIABLES.tasktype_id#"></cfselect></td>
 </tr>	
+<tr>
+	<td><label>Roles</label></td>
+	<td>
+		<cfloop query="roles">
+			<cfoutput>
+			<input type="checkbox" name="roles" value="#role_id#" <cfif listFind(selectedRoles, role_id)>checked</cfif> id="role_#role_id#"> 
+			<label for="role_#role_id#">#role_name#</label><br/>
+			</cfoutput>
+		</cfloop>
+	</td>
+</tr>
 </table>
 </fieldset>
 
@@ -123,17 +140,3 @@
 <!---page footer --->
 <cfinclude template="footer.cfm">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-	

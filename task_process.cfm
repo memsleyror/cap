@@ -6,6 +6,8 @@
 	<cfset method="add">
 </cfif>
 
+<cfparam name="form.roles" default="">
+
 <cfinvoke component="#application.taskService#" method="#method#" >
 
 	<!---task ID only if update method --->
@@ -18,6 +20,7 @@
 	<cfinvokeargument name="task_start_date" value="#DateFormat(FORM.task_start_date)#">
 	<cfinvokeargument name="task_end_date" value="#DateFormat(FORM.task_end_date)#">
 	<cfinvokeargument name="tasktype_id" value="#Int(FORM.tasktype_id)#">
+	<cfinvokeargument name="roles" value="#form.roles#">
 
 </cfinvoke>
 

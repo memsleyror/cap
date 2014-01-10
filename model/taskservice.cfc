@@ -1,5 +1,28 @@
 ﻿<cfcomponent output="false">
 
+	<!--- handles role assignment for tasks --->
+	<cffunction name="assignRolesForTask" returnType="void" output="false">
+		<cfargument name="task_id" type="numeric" required="true">
+		<cfargument name="roles" type="string" required="true">
+		<cfset var id = "">
+
+		<cfquery>
+		delete from tasks_roles
+		where task_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.task_id#">
+		</cfquery>
+
+		<cfloop index="id" list="#arguments.roles#">
+			<cfquery>
+			insert into tasks_roles(task_id, role_id)
+			values(
+				<cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.task_id#">,
+				<cfqueryparam cfsqltype="cf_sql_integer" value="#id#">
+			)
+			</cfquery>
+		</cfloop>
+
+	</cffunction>
+
 	<!---list of all tasks --->
 	<cffunction name="list" returntype="query" hint="list all tasks" output="false"> 
 		<cfset var tasks = "">
@@ -12,15 +35,34 @@
 	</cffunction>
 	
 	<!---get a specific task --->
-	<cffunction name="get" returntype="query" hint="get task details" output="false">
+	<cffunction name="get" returntype="struct" hint="get task details" output="false">
 		<cfargument name="task_id" type="numeric" required="yes" hint="task ID" >
 		<cfset var task = "">
+		<cfset var roles = "">
+		<cfset var result = structNew()>
+
 		<cfquery name="task">
 			SELECT task_id, task_desc, project_id, task_start_date, task_end_date, tasktype_id
 			FROM tasks
 			WHERE task_id=<cfqueryparam cfsqltype="cf_sql_integer" value="#ARGUMENTS.task_id#">
 		</cfquery>	 
-		<cfreturn task>
+
+		<cfset result.task_id = task.task_id>
+		<cfset result.task_desc = task.task_desc>
+		<cfset result.project_id = task.project_id>
+		<cfset result.task_start_date = task.task_start_date>
+		<cfset result.task_end_date = task.task_end_date>
+		<cfset result.tasktype_id = task.tasktype_id>
+
+		<!--- handle getting the role list --->
+		<cfquery name="roles">
+		select role_id
+		from tasks_roles
+		where task_id=<cfqueryparam cfsqltype="cf_sql_integer" value="#ARGUMENTS.task_id#">
+		</cfquery>
+
+		<cfset result.roles = valueList(roles.role_id)>
+		<cfreturn result>
 	</cffunction>
 		
 	<!--- get user specific tasks based on session user id 			
@@ -45,17 +87,21 @@
 		<cfargument name="task_start_date" type="date" required="yes" hint="task start date">
 		<cfargument name="task_end_date" type="date" required="yes" hint="task end date">
 		<cfargument name="tasktype_id" type="numeric" required="yes" hint="tasktype ID">
-		
+		<cfset var result = "">
+
 		<!---insert task --->
-		<cfquery>
+		<cfquery result="result">
 			INSERT INTO tasks(task_desc, project_id, task_start_date, task_end_date, tasktype_id)
 			VALUES(<cfqueryparam cfsqltype="cf_sql_varchar" value="#Trim(ARGUMENTS.task_desc)#">,
 					<cfqueryparam cfsqltype="cf_sql_integer" value="#ARGUMENTS.project_id#">,
 					<cfqueryparam cfsqltype="cf_sql_timestamp" value="#CreateODBCDate(ARGUMENTS.task_start_date)#">,
-					<cfqueryparam cfsqltype="cf_sql_timestap" value="#CreateODBCDate(ARGUMENTS.task_end_date)#">,
+					<cfqueryparam cfsqltype="cf_sql_timestamp" value="#CreateODBCDate(ARGUMENTS.task_end_date)#">,
 					<cfqueryparam cfsqltype="cf_sql_integer" value="#ARGUMENTS.tasktype_id#">
 			)
 		</cfquery>	
+
+		<cfset assignRolesForTask(result.generatedkey, arguments.roles)>
+
 		<cfreturn true>
 	</cffunction>	
 		
@@ -68,7 +114,8 @@
 		<cfargument name="task_start_date" type="date" required="yes" hint="task start date">
 		<cfargument name="task_end_date" type="date" required="yes" hint="task end date">
 		<cfargument name="tasktype_id" type="numeric" required="yes" hint="tasktype ID">
-		
+		<cfargument name="roles" type="string" required="yes" hint="List of role IDs">
+
 		<!---update task --->
 		<cfquery>
 			UPDATE tasks
@@ -78,7 +125,10 @@
 				task_end_date=<cfqueryparam cfsqltype="cf_sql_timestamp" value="#CreateODBCDate(ARGUMENTS.task_end_date)#">,
 				tasktype_id=<cfqueryparam cfsqltype="cf_sql_integer" value="#ARGUMENTS.tasktype_id#">
 			WHERE task_id=<cfqueryparam cfsqltype="cf_sql_integer" value="#ARGUMENTS.task_id#">
-		</cfquery>				
+		</cfquery>	
+
+		<cfset assignRolesForTask(arguments.task_id, arguments.roles)>
+
 		<cfreturn true>
 	</cffunction>
 		
@@ -89,6 +139,9 @@
 			DELETE FROM tasks
 			WHERE task_id=<cfqueryparam cfsqltype="cf_sql_integer" value="#ARGUMENTS.task_id#">
 		</cfquery> 
+
+		<cfset assignRolesForTask(arguments.task_id, "")>
+
 		<cfreturn true>
 	</cffunction>	
 
