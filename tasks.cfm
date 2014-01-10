@@ -1,7 +1,7 @@
 ﻿
 
 <!---get all tasks --->
-<cfinvoke component="tasks" method="list" returnvariable="tasks">
+<cfinvoke component="#application.taskservice#" method="list" returnvariable="tasks">
 
 <!--- INCLUDE HEADER                                                               --->
 <cfset session.menuTracker.menuTitle = "Manage Phase">
