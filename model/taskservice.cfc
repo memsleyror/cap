@@ -65,6 +65,26 @@
 		<cfreturn result>
 	</cffunction>
 		
+	<cffunction name="getTasksByRoleProject" returnType="query" hint="Returns tasks based on a role." output="false">
+		<cfargument name="role" type="numeric" required="true">
+		<cfargument name="project" type="numeric" required="true">
+		<cfset var q = "">
+
+		<cfquery name="q">
+			select task_id, task_desc, task_start_date, task_end_date, tasktype_id, ifnull(completed,0) as completed
+			from tasks 
+			where 
+			project_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.project#">
+			and task_id in 
+				(
+					select task_id 
+					from tasks_roles 
+					where role_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.role#"> 
+				);
+		</cfquery>
+		<cfreturn q>	
+	</cffunction>	
+	
 	<!--- get user specific tasks based on session user id 			
 	<cffunction name="getmine" returntype="query" hint="get my tasks" output="false">
 		<cfset var mytasks = "">

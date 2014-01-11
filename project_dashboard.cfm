@@ -33,6 +33,11 @@
 <!--- get faqs for project --->
 <cfset faqs = application.faqService.getAnsweredQuestions(session.proj.project_id)>
 
+<!--- get tasks based on role --->
+<!--- session.auth.role_id --->
+<cfset mytasks = application.taskService.getTasksByRoleProject(session.auth.role_id, session.proj.project_id)>
+<cfdump var="#myTasks#">
+
 <!---button caption --->
 <cfset ButtonText="Update">	
 
