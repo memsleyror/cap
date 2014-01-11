@@ -65,10 +65,15 @@
 		<cfreturn result>
 	</cffunction>
 		
-	<cffunction name="getTasksByRoleProject" returnType="query" hint="Returns tasks based on a role." output="false">
+	<cffunction name="getTasksByRoleProject" returnType="struct" hint="Returns tasks based on a role." output="false">
 		<cfargument name="role" type="numeric" required="true">
 		<cfargument name="project" type="numeric" required="true">
 		<cfset var q = "">
+		<cfset var result = {}>
+		<cfset var task = "">
+
+		<cfset result.open = []>
+		<cfset result.completed = []>
 
 		<cfquery name="q">
 			select task_id, task_desc, task_start_date, task_end_date, tasktype_id, ifnull(completed,0) as completed
@@ -82,7 +87,21 @@
 					where role_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.role#"> 
 				);
 		</cfquery>
-		<cfreturn q>	
+		<cfloop query="q">
+			<cfset task = { id:task_id, 
+							desc:task_desc, 
+							start_date:task_start_date,
+							end_date:task_end_date, 
+							type_id:tasktype_id
+						}>
+			<cfif completed>
+				<cfset arrayAppend(result.completed, task)>
+			<cfelse>
+				<cfset arrayAppend(result.open, task)>
+			</cfif>
+		</cfloop>
+
+		<cfreturn result>
 	</cffunction>	
 	
 	<!--- get user specific tasks based on session user id 			

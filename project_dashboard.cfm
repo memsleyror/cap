@@ -78,16 +78,16 @@
 				
 			<div class="widget-body">
 			
-					<div class="widget-main padding-4">			
-					<blockquote>
-						<p>We are implementing the SAP DC platform to modernize our supply chain and keep up with the competition. We expect to save $10 million annually when completed.</p>
+				<div class="widget-main padding-4">			
+				<blockquote>
+					<p>We are implementing the SAP DC platform to modernize our supply chain and keep up with the competition. We expect to save $10 million annually when completed.</p>
 
-						<small>
-							Jeff Smith, CEO
-							<!--- <cite title="Source Title">Source Title</cite> --->
-						</small>
-					</blockquote>
-					</div><!--- /widget-main --->
+					<small>
+						Jeff Smith, CEO
+						<!--- <cite title="Source Title">Source Title</cite> --->
+					</small>
+				</blockquote>
+				</div><!--- /widget-main --->
 					
 			</div><!--- /widget-body --->
 		</div><!--- /widget-box --->
@@ -135,7 +135,6 @@
 					</cfoutput>
 				</td></tr>	
 					
-					<!--- <cfselect name="mood_id" class="form-control" query="moods" value="mood_id" display="mood_name" <!--- selected="#VARIABLES.mood_id#"---> ></cfselect>--->
 				<tr><td align="center">
 						<INPUT TYPE="image" SRC="assets/images/positive.png" ALT="positive" value="save" NAME="button_pos"> 
 						<INPUT TYPE="image" SRC="assets/images/negative.png" ALT="negative" value="save" NAME="button_neg"> 
@@ -178,12 +177,71 @@
 					<a href="#" data-action="collapse">
 						<i class="icon-chevron-up"></i>
 					</a>
+
 				</div>
 			</div><!---/widget header --->
 
 			<div class="widget-body">
+				<!--- removed as it lets the border work for the tabs
 				<div class="widget-main padding-4">
-				
+				--->
+					<div class="tabbable padding-4">
+						<ul class="nav nav-tabs" id="taskTabs">
+							<li class="active">
+								<a data-toggle="tab" href="#tasksopen">
+									<i class="bigger-110"></i>
+									Open
+								</a>
+							</li>
+							<li>
+								<a data-toggle="tab" href="#taskscompleted">
+									<i class="bigger-110"></i>
+									Completed
+								</a>
+							</li>
+						</ul>	
+
+						<div class="tab-content">
+							<div id="tasksopen" class="tab-pane in active">
+								<h4 class="smaller lighter green">
+									<i class="icon-list"></i>
+									Open Tasks
+								</h4>
+
+								<ul id="taskslistopen" class="item-list">
+									<cfloop index="t" array="#myTasks.open#">
+	
+									<li class="item-orange clearfix">
+										<label class="inline">
+											<input type="checkbox" class="ace" />
+											<span class="lbl"> <cfoutput>#t.desc#</cfoutput></span>
+										</label>
+									</li>
+									</cfloop>
+								</ul>
+
+							</div>
+							<div id="taskscompleted" class="tab-pane">
+								<h4 class="smaller blue">
+									<i class="icon-list"></i>
+									Completed Tasks
+								</h4>
+								<ul id="taskslistclosed" class="item-list">
+									<cfloop index="t" array="#myTasks.completed#">
+	
+									<li class="item-orange clearfix">
+										<label class="inline">
+											<input type="checkbox" class="ace" />
+											<span class="lbl"> <cfoutput>#t.desc#</cfoutput></span>
+										</label>
+									</li>
+									</cfloop>
+								</ul>
+							</div>
+						</div>
+
+					</div>
+				<!---
 				<h4 class="smaller lighter green">
 					<i class="icon-list"></i>
 					To Do
@@ -209,8 +267,12 @@
 					</li>
 
 				</ul>
-					
+				--->
+
+				<!---
 				</div><!--- /widget-main --->
+				--->
+
 			</div><!--- /widget-body --->
 		</div><!--- /widget-box --->
 	</div><!---span --->
