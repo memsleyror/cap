@@ -26,22 +26,19 @@
 <!---get all feeds --->
 <cfinvoke component="projectfeed" method="getProjFeeds" project_id="#session.proj.project_id#" returnvariable="projprojectfeeds">
 
-	<!---save info to variables --->
-	<cfset projectfeed_text=Trim(projprojectfeeds.projectfeed_text)>
+<!---save info to variables --->
+<cfset projectfeed_text=Trim(projprojectfeeds.projectfeed_text)>
 	
-
 <!--- get faqs for project --->
 <cfset faqs = application.faqService.getAnsweredQuestions(session.proj.project_id)>
 
 <!--- get tasks based on role --->
-<!--- session.auth.role_id --->
 <cfset mytasks = application.taskService.getTasksByRoleProject(session.auth.role_id, session.proj.project_id)>
-<cfdump var="#myTasks#">
 
 <!---button caption --->
 <cfset ButtonText="Update">	
 
-<!--- INCLUDE HEADER                                                               --->
+<!--- INCLUDE HEADER --->
 <cfset session.menuTracker.menuTitle = "Home">
 <cfset session.menuTracker.subMenuTitle = "Dashboard">
 
@@ -79,36 +76,20 @@
 				</h4>
 			</div>
 				
-				<div class="widget-body">
-				
-						
+			<div class="widget-body">
+			
+					<div class="widget-main padding-4">			
+					<blockquote>
+						<p>We are implementing the SAP DC platform to modernize our supply chain and keep up with the competition. We expect to save $10 million annually when completed.</p>
+
+						<small>
+							Jeff Smith, CEO
+							<!--- <cite title="Source Title">Source Title</cite> --->
+						</small>
+					</blockquote>
+					</div><!--- /widget-main --->
 					
-						<div class="widget-main padding-4">			
-						<blockquote>
-							<p>We are implementing the SAP DC platform to modernize our supply chain and keep up with the competition. We expect to save $10 million annually when completed.</p>
-
-							<small>
-								Jeff Smith, CEO
-								<!--- <cite title="Source Title">Source Title</cite> --->
-							</small>
-						</blockquote>
-						</div><!--- /widget-main --->
-						
-
-<!--- 
-						<div class="widget-main">
-							<p class="alert alert-info">
-								Nunc aliquam enim ut arcu aliquet adipiscing. Fusce dignissim volutpat justo non consectetur. Nulla fringilla eleifend consectetur.
-							</p>
-							
-						</div>
---->
-
-
-
-
-
-				</div><!--- /widget-body --->
+			</div><!--- /widget-body --->
 		</div><!--- /widget-box --->
 	</div><!---span --->
 
@@ -186,21 +167,22 @@
 	<!---second row, first cell --->
 	<div class="col-sm-6">
 		<div class="widget-box transparent">
-						<div class="widget-header widget-header-flat">
-							<h4 class="lighter">
-								<!--- <i class="icon-signal"></i> --->
-								My Tasks
-							</h4>
-							
-							<div class="widget-toolbar">
-								<a href="#" data-action="collapse">
-									<i class="icon-chevron-up"></i>
-								</a>
-							</div>
-						</div><!---/widget header --->
+
+			<div class="widget-header widget-header-flat">
+				<h4 class="lighter">
+					<!--- <i class="icon-signal"></i> --->
+					My Tasks
+				</h4>
+				
+				<div class="widget-toolbar">
+					<a href="#" data-action="collapse">
+						<i class="icon-chevron-up"></i>
+					</a>
+				</div>
+			</div><!---/widget header --->
 
 			<div class="widget-body">
-					<div class="widget-main padding-4">
+				<div class="widget-main padding-4">
 				
 				<h4 class="smaller lighter green">
 					<i class="icon-list"></i>
@@ -208,58 +190,27 @@
 				</h4>
 				
 				<ul id="tasks" class="item-list">
-																<li class="item-orange clearfix">
-																	<label class="inline">
-																		<input type="checkbox" class="ace" />
-																		<span class="lbl"> Take SAP training</span>
-																	</label>
+					<li class="item-orange clearfix">
+						<label class="inline">
+							<input type="checkbox" class="ace" />
+							<span class="lbl"> Take SAP training</span>
+						</label>
 
-																	<div class="pull-right easy-pie-chart percentage" data-size="30" data-color="#ECCB71" data-percent="42">
-																		<span class="percent">42</span>%
-																	</div>
-																</li>
+						<div class="pull-right easy-pie-chart percentage" data-size="30" data-color="#ECCB71" data-percent="42">
+							<span class="percent">42</span>%
+						</div>
+					</li>
 
-																<li class="item-red clearfix">
-																	<label class="inline">
-																		<input type="checkbox" class="ace" />
-																		<span class="lbl"> Review business case</span>
-																	</label>
+					<li class="item-red clearfix">
+						<label class="inline">
+							<input type="checkbox" class="ace" />
+							<span class="lbl"> Review business case</span>
+						</label>						
+					</li>
 
-																	
-																</li>
-
-																<li class="item-default clearfix">
-																	<label class="inline">
-																		<input type="checkbox" class="ace" />
-																		<span class="lbl"> Go over timeline with manager</span>
-																	</label>
-
-																	
-																</li>
-
-																<li class="item-blue clearfix">
-																	<label class="inline">
-																		<input type="checkbox" class="ace" />
-																		<span class="lbl"> Complete skills assessment</span>
-																	</label>
-																</li>
-
-																
-
-																<li class="item-pink clearfix">
-																	<label class="inline">
-																		<input type="checkbox" class="ace" />
-																		<span class="lbl"> Provide feedback</span>
-																	</label>
-																</li>
-															</ul>
-				
-				
-				
-				
-				
-				
-					</div><!--- /widget-main --->
+				</ul>
+					
+				</div><!--- /widget-main --->
 			</div><!--- /widget-body --->
 		</div><!--- /widget-box --->
 	</div><!---span --->
@@ -326,48 +277,7 @@
 
 								</cfoutput>
 							</cfoutput>
-
-								<!---
-								<div class="timeline-label">
-									<span class="label label-primary arrowed-in-right label-lg">
-										<b>Today</b>
-									</span>
-								</div><!---timeline label --->
-							
-								<div class="timeline-items"><!---does not repeat --->
-
-								<!---one timeline block starts here --->	
-									<cfoutput query="projprojectfeeds">
-										
-										<div class="timeline-item clearfix">
-							
-											<div class="timeline-info">
-												<i class="timeline-indicator icon-#feedtype_icon# btn #feedtype_button#"></i>
-											</div>
-
-											<div class="widget-box transparent">
-												<div class="widget-header widget-header-small ">
-													<h5 class="smaller">#projectfeed_title#</h5>
-												</div>
-
-												<div class="widget-body">
-													<div class="widget-main">
-														#projectfeed_text#
-														<div class="pull-right">
-															<i class="icon-time bigger-110"></i>
-															12:30
-														</div>
-													</div>
-												</div>
-											</div>
-											
-										</div>	
-											
-									</cfoutput>		
-									--->
-
-						
-						
+												
 								<!---timeline block ends here --->
 						
 						
@@ -634,25 +544,6 @@
 												<div class="infobox-content">1,205</div>
 											</div>
 										</div>
-			<!--- 
-			<div class="col-xs-4 center">	
-				
-				<div class="easy-pie-chart percentage" data-percent="20" data-color="#D15B47">
-					<span class="percent">20</span>%
-				</div>
-	
-				<hr />
-				<div class="easy-pie-chart percentage" data-percent="55" data-color="#87CEEB">
-					<span class="percent">55</span>%
-				</div>
-	
-				<hr />
-				<div class="easy-pie-chart percentage" data-percent="90" data-color="#87B87F">
-					<span class="percent">90</span>%
-				</div>
-				
-					
-			</div>--->
 				
 			</div><!---widget body --->
 
@@ -661,7 +552,6 @@
 	</div><!---span, closes second cell --->
 
 </div><!---end of third row --->
-
 
 
 <!---these 2 divs close the entire page --->
