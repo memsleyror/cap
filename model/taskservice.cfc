@@ -88,11 +88,11 @@
 				);
 		</cfquery>
 		<cfloop query="q">
-			<cfset task = { id:task_id, 
-							desc:task_desc, 
-							start_date:task_start_date,
-							end_date:task_end_date, 
-							type_id:tasktype_id
+			<cfset task = { id=task_id, 
+							desc=task_desc, 
+							start_date=task_start_date,
+							end_date=task_end_date, 
+							type_id=tasktype_id
 						}>
 			<cfif completed>
 				<cfset arrayAppend(result.completed, task)>
