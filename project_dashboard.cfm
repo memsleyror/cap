@@ -44,6 +44,32 @@
 
 <cfinclude template="header.cfm">
 
+<script>
+$(document).ready(function() {
+	$(".opentask").on("click", function(e) {
+		var input = $(this);
+		var task = input.attr("id").split("_").pop();
+		console.log(task);
+		var checked = input.prop("checked");
+		$.get("ajaxService.cfc?method=updateTask", {task:task, complete:checked}, function(res, code) {
+			console.log("back from service");
+			if(res === 0) {
+				alert("Sorry, something went wrong.\nPlease try again.");
+			} else {
+				var t = input.next();
+				if(checked) {
+					t.css("text-decoration","line-through");
+				} else {
+					t.css("text-decoration","none");
+				}
+				console.dir(t);
+			}
+		});
+	});
+
+});
+</script>
+
 <div class="page-header">
 	<h1>
 		<cfoutput>#session.menuTracker.subMenuTitle#</cfoutput>
@@ -141,12 +167,6 @@
 						<INPUT TYPE="image" SRC="assets/images/confused.png" ALT="confused" value="save" NAME="button_confused"> 
 						<INPUT TYPE="image" SRC="assets/images/neutral.png" ALT="neutral" value="save" NAME="button_neutral"> 
 				</td></tr>	
-						<!--- <button class="btn btn-success" name="button_pos" input type="submit">Positive</button>
-						<button class="btn btn-danger" name="button_neg" input type="submit">Negative</button>
-						<button class="btn btn-grey" name="button_confused" input type="submit">Confused</button>
-						<button class="btn btn-yellow" name="button_neutral" input type="submit">Neutral</button>--->
-					
-					<!--- <button class="btn btn-purple">Purple</button>--->
 					
 					</cfform>
 				</table>	
@@ -213,8 +233,10 @@
 	
 									<li class="item-orange clearfix">
 										<label class="inline">
-											<input type="checkbox" class="ace" />
-											<span class="lbl"> <cfoutput>#t.desc#</cfoutput></span>
+											<cfoutput>
+											<input type="checkbox" id="task_#t.id#" class="ace opentask" />
+											<span class="lbl"> #t.desc# (#dateFormat(t.start_date,"m/d/yy")#-#dateFormat(t.end_date,"m/d/yy")#)</span>
+											</cfoutput>
 										</label>
 									</li>
 									</cfloop>
@@ -229,7 +251,7 @@
 								<ul id="taskslistclosed" class="item-list">
 									<cfloop index="t" array="#myTasks.completed#">
 	
-									<li class="item-orange clearfix">
+									<li class="item-green clearfix">
 										<label class="inline">
 											<input type="checkbox" class="ace" />
 											<span class="lbl"> <cfoutput>#t.desc#</cfoutput></span>

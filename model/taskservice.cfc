@@ -42,7 +42,7 @@
 		<cfset var result = structNew()>
 
 		<cfquery name="task">
-			SELECT task_id, task_desc, project_id, task_start_date, task_end_date, tasktype_id
+			SELECT task_id, task_desc, project_id, task_start_date, task_end_date, tasktype_id, completed
 			FROM tasks
 			WHERE task_id=<cfqueryparam cfsqltype="cf_sql_integer" value="#ARGUMENTS.task_id#">
 		</cfquery>	 
@@ -53,6 +53,7 @@
 		<cfset result.task_start_date = task.task_start_date>
 		<cfset result.task_end_date = task.task_end_date>
 		<cfset result.tasktype_id = task.tasktype_id>
+		<cfset result.completed = task.completed>
 
 		<!--- handle getting the role list --->
 		<cfquery name="roles">
@@ -76,8 +77,9 @@
 		<cfset result.completed = []>
 
 		<cfquery name="q">
-			select task_id, task_desc, task_start_date, task_end_date, tasktype_id, ifnull(completed,0) as completed
-			from tasks 
+			select t.task_id, t.task_desc, t.task_start_date, t.task_end_date,  
+			ifnull(t.completed,0) as completed, tt.tasktype
+			from tasks t left join tasktype tt on t.tasktype_id = tt.tasktype_id
 			where 
 			project_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.project#">
 			and task_id in 
@@ -92,7 +94,7 @@
 							desc=task_desc, 
 							start_date=task_start_date,
 							end_date=task_end_date, 
-							type_id=tasktype_id
+							type=tasktype
 						}>
 			<cfif completed>
 				<cfset arrayAppend(result.completed, task)>
@@ -154,6 +156,7 @@
 		<cfargument name="task_end_date" type="date" required="yes" hint="task end date">
 		<cfargument name="tasktype_id" type="numeric" required="yes" hint="tasktype ID">
 		<cfargument name="roles" type="string" required="yes" hint="List of role IDs">
+		<cfargument name="completed" type="boolean" required="no" hint="Completed status">
 
 		<!---update task --->
 		<cfquery>
@@ -163,6 +166,9 @@
 				task_start_date=<cfqueryparam cfsqltype="cf_sql_timestamp" value="#CreateODBCDate(ARGUMENTS.task_start_date)#">,
 				task_end_date=<cfqueryparam cfsqltype="cf_sql_timestamp" value="#CreateODBCDate(ARGUMENTS.task_end_date)#">,
 				tasktype_id=<cfqueryparam cfsqltype="cf_sql_integer" value="#ARGUMENTS.tasktype_id#">
+				<cfif structKeyExists(arguments,"completed")>
+					,completed=<cfqueryparam cfsqltype="cf_sql_boolean" value="#ARGUMENTS.completed?1:0#">
+				</cfif>
 			WHERE task_id=<cfqueryparam cfsqltype="cf_sql_integer" value="#ARGUMENTS.task_id#">
 		</cfquery>	
 

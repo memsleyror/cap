@@ -45,6 +45,8 @@
 		<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
 		
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
 		<!--- session variables to make page selection dynamic --->
 		
 		<cfif not isDefined("session.menuTracker")>

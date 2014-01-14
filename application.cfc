@@ -21,12 +21,13 @@
 	</cffunction>
 
 	<cffunction name="onRequestStart" output="false" returntype="void">
-	
+		<cfargument name="page" type="string" required="true">
+
 		<!--- temp --->
 		<cfset onApplicationStart()>
-
 		<!---if user isn't logged in, force them to now --->
-		<cfif not isDefined("session.auth.isLoggedIn")>
+		<cfif (not isDefined("session.auth.isLoggedIn") or session.auth.isLoggedin is false) and not findNoCase(".cfc", arguments.page)>
+
 			<!---if user is now submitting the login form include login check --->
 			<cfif isDefined("form.user_login")>
 				<cfinclude template="loginCheck.cfm" >
