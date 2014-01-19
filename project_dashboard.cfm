@@ -236,6 +236,9 @@ $(document).ready(function() {
 											<cfoutput>
 											<input type="checkbox" id="task_#t.id#" class="ace opentask" />
 											<span class="lbl"> #t.desc# (#dateFormat(t.start_date,"m/d/yy")#-#dateFormat(t.end_date,"m/d/yy")#)</span>
+											
+											<span class="label label-success arrowed arrowed-right">approved</span>
+											
 											</cfoutput>
 										</label>
 									</li>

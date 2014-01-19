@@ -14,6 +14,7 @@
 	</cfif>
 	
 	<cfinvokeargument name="tasktype" value="#Trim(FORM.tasktype)#">
+	<cfinvokeargument name="tasktype_label" value="#Trim(FORM.tasktype_label)#">
 	
 </cfinvoke>
 

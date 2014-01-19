@@ -14,7 +14,7 @@
 		<cffunction name="get" returntype="query" hint="get tasktype details">
 			<cfargument name="tasktype_id" type="numeric" required="yes" hint="tasktype ID" >
 			<cfquery name="tasktype">
-				SELECT tasktype_id, tasktype
+				SELECT tasktype_id, tasktype, tasktype_label
 				FROM tasktype
 				WHERE tasktype_id=#ARGUMENTS.tasktype_id#
 			</cfquery>	 
@@ -26,12 +26,14 @@
 			
 			<!---method arguments --->
 			<cfargument name="tasktype" type="string" required="yes" hint="tasktype name">
+			<cfargument name="tasktype_label" type="string" required="yes" hint="tasktype label">
 			
 			
 			<!---insert tasktype --->
 			<cfquery>
-				INSERT INTO tasktype(tasktype)
-				VALUES('#Trim(ARGUMENTS.tasktype)#'
+				INSERT INTO tasktype(tasktype, tasktype_label)
+				VALUES('#Trim(ARGUMENTS.tasktype)#',
+						'#Trim(ARGUMENTS.tasktype_label)#'
 				)
 			</cfquery>	
 			<cfreturn true>
@@ -43,12 +45,14 @@
 			<!---method arguments --->
 			<cfargument name="tasktype_id" type="numeric" required="yes" hint="tasktype ID">
 			<cfargument name="tasktype" type="string" required="yes" hint="tasktype name">
+			<cfargument name="tasktype_label" type="string" required="yes" hint="tasktype label">
 		
 			
 			<!---update tasktype --->
 			<cfquery>
 				UPDATE tasktype
-				SET tasktype='#Trim(ARGUMENTS.tasktype)#'
+				SET tasktype='#Trim(ARGUMENTS.tasktype)#',
+					tasktype_label='#Trim(ARGUMENTS.tasktype_label)#',
 				WHERE tasktype_id=#ARGUMENTS.tasktype_id#
 			</cfquery>				
 			<cfreturn true>

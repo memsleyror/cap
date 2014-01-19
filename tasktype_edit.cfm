@@ -12,6 +12,7 @@
 	
 	<!---save to variables --->
 	<cfset tasktype_name=Trim(tasktype.tasktype)>
+	<cfset tasktype_label=Trim(tasktype.tasktype_label)>
 	
 	
 	<!---form text --->
@@ -22,6 +23,7 @@
 	
 	<!---save to variables --->
 	<cfset tasktype="">
+	<cfset tasktype_label="">
 	
 	
 	<!---form text --->
@@ -66,7 +68,10 @@
 		<td><cfinput type="text" name="tasktype" value="#tasktype.tasktype#" message="tasktype is required" required="yes" placeholder="tasktype" validateAt="onSubmit,onServer" size="30" maxlength="100"></td>
 	</tr>
 	
-	
+	<tr>
+		<td width = "150"><label> Task Type Label </label></td>
+		<td><cfinput type="text" name="tasktype_label" value="#tasktype.tasktype_label#" message="tasktype label is required" required="yes" placeholder="tasktype label" validateAt="onSubmit,onServer" size="30" maxlength="100"></td>
+	</tr>
 
 
 </table>
