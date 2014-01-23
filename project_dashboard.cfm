@@ -235,9 +235,9 @@ $(document).ready(function() {
 										<label class="inline">
 											<cfoutput>
 											<input type="checkbox" id="task_#t.id#" class="ace opentask" />
-											<span class="lbl"> #t.desc# (#dateFormat(t.start_date,"m/d/yy")#-#dateFormat(t.end_date,"m/d/yy")#)</span>
+											<span class="lbl"> #t.desc# (due #dateFormat(t.end_date,"m/d/yy")#)</span>
 											
-											<span class="label label-success arrowed arrowed-right">approved</span>
+											<span class="label label-#t.tasktype_label# arrowed arrowed-right">#t.tasktype_label#</span>
 											
 											</cfoutput>
 										</label>
@@ -256,8 +256,8 @@ $(document).ready(function() {
 	
 									<li class="item-green clearfix">
 										<label class="inline">
-											<input type="checkbox" class="ace" />
-											<span class="lbl"> <cfoutput>#t.desc#</cfoutput></span>
+											<input type="checkbox" class="ace" checked />
+											<span class="lbl"> <strike><cfoutput>#t.desc#</cfoutput></strike> (done: <cfoutput>#dateFormat(t.date_completed,"m/d/yy")#</cfoutput>)</span>
 										</label>
 									</li>
 									</cfloop>
