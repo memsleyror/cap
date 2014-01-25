@@ -20,6 +20,13 @@
 	<cfset mood_name=Trim(mymood.mood_name)>
 	<cfset mood_id=mymood.mood_id>
 	
+<!---get the case for change --->
+	<cfinvoke component="caseforchange" method="getprojectcase" project_id="#session.proj.project_id#" returnvariable="projectcaseforchange">
+	
+	<!---save info to variables --->
+	<cfset caseforchange_text=Trim(projectcaseforchange.caseforchange_text)>
+	
+	
 <!---get moods --->
 <cfinvoke component="projects" method="getMoods" returnvariable="moods"> 	
 
@@ -106,8 +113,14 @@ $(document).ready(function() {
 			
 				<div class="widget-main padding-4">			
 				<blockquote>
+					
+					<!--- 
 					<p>We are implementing the SAP DC platform to modernize our supply chain and keep up with the competition. We expect to save $10 million annually when completed.</p>
-
+					--->
+					
+					<cfoutput>
+						<p>#caseforchange_text#</p>
+					</cfoutput>	
 					<small>
 						Jeff Smith, CEO
 						<!--- <cite title="Source Title">Source Title</cite> --->

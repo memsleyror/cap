@@ -20,6 +20,17 @@
 			</cfquery>	 
 			<cfreturn caseforchange>
 		</cffunction>
+		
+		<!---get a specific PROJECT caseforchange --->
+		<cffunction name="getprojectcase" returntype="query" hint="get case for change details">
+			
+			<cfquery name="projectcaseforchange">
+				SELECT caseforchange_id, caseforchange_text, caseforchange_date, project_id, user_id, version_id
+				FROM caseforchange
+				WHERE caseforchange.project_id=#ARGUMENTS.project_id#
+			</cfquery>	 
+			<cfreturn projectcaseforchange>
+		</cffunction>
 
 		<!---add a caseforchange --->
 		<cffunction name="add" returntype="boolean" hint="add a caseforchange">
