@@ -3,7 +3,7 @@
 	<!---list of all project_stats for all projects--->
 		<cffunction name="list" returntype="query" hint="list all project feeds" > 
 			<cfquery name="all_project_stats">
-				SELECT project_stat_id, project_stat_name, project_stat_note, project_stat_value, project_stat_style, project_stat.project_id, projects.project_name
+				SELECT project_stat_id, project_stat_name, project_stat_note, project_stat_value, project_stat_style, project_stats.project_id, projects.project_name
 				FROM project_stats INNER JOIN projects ON project_stats.project_id = projects.project_id
 				
 			</cfquery>
@@ -13,7 +13,7 @@
 		<!---list of all project_stats for a specific project--->
 		<cffunction name="getProjStats" returntype="query" hint="list all project feeds" > 
 			<cfquery name="project_stats">
-				SELECT project_stat_id, project_stat_name, project_stat_note, project_stat_value, project_stat_style, project_stat.project_id, projects.project_name
+				SELECT project_stat_id, project_stat_name, project_stat_note, project_stat_value, project_stat_style, project_stats.project_id, projects.project_name
 				
 				FROM project_stats INNER JOIN projects ON project_stats.project_id = projects.project_id
 				

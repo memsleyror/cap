@@ -48,11 +48,11 @@
 																	<i class="icon-zoom-in bigger-130"></i>
 																</a>
 
-																<a class="green" href="project_stat_edit.cfm?project_id=#project_stat_id#">
+																<a class="green" href="project_stats_edit.cfm?project_stat_id=#project_stat_id#">
 																	<i class="icon-pencil bigger-130"></i>
 																</a>
 
-																<a class="red" href="project_stat_delete.cfm?project_id=#project_stat_id#">
+																<a class="red" href="project_stats_delete.cfm?project_stat_id=#project_stat_id#">
 																	<i class="icon-trash bigger-130"></i>
 																</a>
 															</div>
@@ -62,7 +62,7 @@
 												</tbody>		
 
 								</table>
-								<a href="project_stat_edit.cfm">Add New</a><br>
+								<a href="project_stats_edit.cfm">Add New</a><br>
 						</div><!-- /.table-responsive -->
 				</div><!-- /span -->
 		</div><!-- /row -->
