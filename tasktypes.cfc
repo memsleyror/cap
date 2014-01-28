@@ -52,7 +52,7 @@
 			<cfquery>
 				UPDATE tasktype
 				SET tasktype='#Trim(ARGUMENTS.tasktype)#',
-					tasktype_label='#Trim(ARGUMENTS.tasktype_label)#',
+					tasktype_label='#Trim(ARGUMENTS.tasktype_label)#'
 				WHERE tasktype_id=#ARGUMENTS.tasktype_id#
 			</cfquery>				
 			<cfreturn true>
