@@ -150,12 +150,7 @@ $(document).ready(function() {
 
 			<div class="widget-body">
 				<div class="widget-main padding-4">
-					<!--- Currently, I feel:<br>
-					<cfoutput>#mood_name#</cfoutput>--->
-					
-				<table>	
-				
-				<tr><td align="center">
+					<div class="center">
 					<cfif mood_name Is "positive">
 						<img alt="Bob Doe's Avatar" src="assets/images/positive_big.png" />
 					<cfelseif mood_name Is "negative">	
@@ -165,24 +160,21 @@ $(document).ready(function() {
 					<cfelse>
 						<img alt="Bob Doe's Avatar" src="assets/images/neutral_big.png" />		
 					</cfif>
-					
-					<cfform action="projectmood_update.cfm" class="form-horizontal" role="form">
+
+					<form action="projectmood_update.cfm" class="form-horizontal" role="form" method="post">
 					
 					<cfoutput>
 						<input type="hidden" name="userprojectmood_id" value="#mymood.userprojectmood_id#">
 					</cfoutput>
-				</td></tr>	
-					
-				<tr><td align="center">
+
 						<INPUT TYPE="image" SRC="assets/images/positive.png" ALT="positive" value="save" NAME="button_pos"> 
 						<INPUT TYPE="image" SRC="assets/images/negative.png" ALT="negative" value="save" NAME="button_neg"> 
 						<INPUT TYPE="image" SRC="assets/images/confused.png" ALT="confused" value="save" NAME="button_confused"> 
 						<INPUT TYPE="image" SRC="assets/images/neutral.png" ALT="neutral" value="save" NAME="button_neutral"> 
-				</td></tr>	
 					
-					</cfform>
-				</table>	
-					
+					</form>
+
+					</div>
 				</div><!--- /widget-main --->
 			</div><!--- /widget-body --->
 		</div><!--- /widget-box --->
