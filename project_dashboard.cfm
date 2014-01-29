@@ -22,7 +22,7 @@
 	
 <!---get the case for change --->
 	<cfinvoke component="caseforchange" method="getprojectcase" project_id="#session.proj.project_id#" returnvariable="projectcaseforchange">
-	
+
 	<!---save info to variables --->
 	<cfset caseforchange_text=Trim(projectcaseforchange.caseforchange_text)>
 	
@@ -122,8 +122,7 @@ $(document).ready(function() {
 						<p>#caseforchange_text#</p>
 					</cfoutput>	
 					<small>
-						Jeff Smith, CEO
-						<!--- <cite title="Source Title">Source Title</cite> --->
+						<cfoutput><cite>#projectcaseforchange.user_firstname# #projectcaseforchange.user_lastname#</cite></cfoutput>						<!--- <cite title="Source Title">Source Title</cite> --->
 					</small>
 				</blockquote>
 				</div><!--- /widget-main --->

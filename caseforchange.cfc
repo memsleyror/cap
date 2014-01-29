@@ -25,9 +25,11 @@
 		<cffunction name="getprojectcase" returntype="query" hint="get case for change details">
 			
 			<cfquery name="projectcaseforchange">
-				SELECT caseforchange_id, caseforchange_text, caseforchange_date, project_id, user_id, version_id
-				FROM caseforchange
-				WHERE caseforchange.project_id=#ARGUMENTS.project_id#
+				SELECT c.caseforchange_id, c.caseforchange_text, c.caseforchange_date, c.project_id, u.user_id, c.version_id,
+				u.user_firstname, u.user_lastname
+				FROM caseforchange c left join users u
+				on c.user_id = u.user_id
+				WHERE c.project_id=<cfqueryparam cfsqltype="cf_sql_integer" value="#ARGUMENTS.project_id#">
 			</cfquery>	 
 			<cfreturn projectcaseforchange>
 		</cffunction>
