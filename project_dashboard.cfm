@@ -356,7 +356,7 @@ $(document).ready(function() {
 														#projectfeed_text#
 														<div class="pull-right">
 															<i class="icon-time bigger-110"></i>
-															12:30
+															#timeFormat(projectfeed_date,"h:mm tt")#
 														</div> <!---time --->
 													</div> <!---widget main --->
 												</div> <!---widget body --->
