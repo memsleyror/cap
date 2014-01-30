@@ -15,9 +15,11 @@
 	<cfset faq = {}>
 	<cfset faq.question = form.question>
 	<cfset faq.answer = form.answer>
+	<!---
 	<cfset faq.deleted = structKeyExists(form,"deleted")>
 	<cfset faq.rejected = structKeyExists(form,"rejected")>
 	<cfset faq.edited = structKeyExists(form,"edited")>
+	--->
 	<cfset faq.faq_id = url.faq_id>
 	<cfset application.faqService.updateFaq(faq)>
 	<cflocation url="faq_edit.cfm?faq_id=#faq.faq_id#&showsuccess=1" addToken="false">
@@ -62,6 +64,7 @@
 			<textarea id="answer" name="answer" class="form-control" rows="4">#htmlEditFormat(faq.answer)#</textarea>
 		</div>
 	</div>
+	<!---
 	<div class="form-group">
 		<!---
 		<label class="col-sm-3 control-label no-padding-right"> Status </label>
@@ -73,7 +76,7 @@
 			<input type="checkbox" id="rejected" name="rejected" <cfif faq.rejected>checked</cfif>> <label for="rejected">Rejected</label><br/>
 		</div>
 	</div>
-
+	--->
 	<div class="clearfix form-actions">
 		<div class="col-md-offset-3 col-md-9">
 			<button class="btn btn-info" type="submit" name="save">

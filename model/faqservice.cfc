@@ -53,12 +53,13 @@ component {
 	//Possible TODO - edit user?
 	public void function updateFaq(required struct faq) {
 		var q = new com.adobe.coldfusion.query();
-		q.setSQL("update faq set question = :question, answer = :answer, deleted = :deleted, edited = :edited, rejected = :rejected where faq_id = :faq_id");
+		//, deleted = :deleted, edited = :edited, rejected = :rejected
+		q.setSQL("update faq set question = :question, answer = :answer where faq_id = :faq_id");
 		q.addParam(name="question", value=arguments.faq.question,cfsqltype="cf_sql_varchar");
 		q.addParam(name="answer", value=arguments.faq.answer,cfsqltype="cf_sql_varchar");
-		q.addParam(name="edited", value=arguments.faq.edited,cfsqltype="cf_sql_tinyint");
-		q.addParam(name="rejected", value=arguments.faq.rejected,cfsqltype="cf_sql_tinyint");
-		q.addParam(name="deleted", value=arguments.faq.deleted,cfsqltype="cf_sql_tinyint");
+		//q.addParam(name="edited", value=arguments.faq.edited,cfsqltype="cf_sql_tinyint");
+		//q.addParam(name="rejected", value=arguments.faq.rejected,cfsqltype="cf_sql_tinyint");
+		//q.addParam(name="deleted", value=arguments.faq.deleted,cfsqltype="cf_sql_tinyint");
 		q.addParam(name="faq_id", value=arguments.faq.faq_id,cfsqltype="cf_sql_integer");
 		q.execute();
 	}
