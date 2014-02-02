@@ -17,7 +17,7 @@
 	<cfset user_lastname=Trim(user.user_lastname)>
 	<cfset user_email=Trim(user.user_email)>	
 	<cfset role_id=user.role_id>
-	<cfset user_default_project_id=user.user_default_project_id>
+	<!--- <cfset user_default_project_id=user.user_default_project_id> --->
 	
 	<!---form text --->
 	<cfset FormTitle="Update User">
@@ -32,7 +32,7 @@
 	<cfset user_lastname="">
 	<cfset user_email="">
 	<cfset role_id="">
-	<cfset user_default_project_id="">
+	<!--- <cfset user_default_project_id="">--->
 	
 	
 	<!---form text --->

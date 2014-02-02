@@ -354,10 +354,12 @@ $(document).ready(function() {
 												<div class="widget-body">
 													<div class="widget-main">
 														#projectfeed_text#
+														
+														<!--- 
 														<div class="pull-right">
 															<i class="icon-time bigger-110"></i>
 															#timeFormat(projectfeed_date,"h:mm tt")#
-														</div> <!---time --->
+														</div> ---><!---time --->
 													</div> <!---widget main --->
 												</div> <!---widget body --->
 										</div> <!---widget box transparent --->
@@ -522,7 +524,7 @@ $(document).ready(function() {
 
 											<div class="infobox-data">
 												<span class="infobox-data-number">32</span>
-												<div class="infobox-content">comments + 2 reviews</div>
+												<div class="infobox-content">questions</div>
 											</div>
 											<div class="stat stat-success">8%</div>
 										</div>
@@ -550,7 +552,7 @@ $(document).ready(function() {
 
 											<div class="infobox-data">
 												<span class="infobox-data-number">8</span>
-												<div class="infobox-content">new orders</div>
+												<div class="infobox-content">new tasks</div>
 											</div>
 											<div class="stat stat-important">4%</div>
 										</div>
@@ -562,10 +564,11 @@ $(document).ready(function() {
 
 											<div class="infobox-data">
 												<span class="infobox-data-number">7</span>
-												<div class="infobox-content">experiments</div>
+												<div class="infobox-content">test groups</div>
 											</div>
 										</div>
 
+										<!--- 
 										<div class="infobox infobox-orange2  ">
 											<div class="infobox-chart">
 												<span class="sparkline" data-values="196,128,202,177,154,94,100,170,224"></span>
@@ -635,6 +638,7 @@ $(document).ready(function() {
 												<div class="infobox-content">1,205</div>
 											</div>
 										</div>
+										--->
 				
 			</div><!---widget body --->
 

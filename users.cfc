@@ -14,7 +14,7 @@
 		<cffunction name="get" returntype="query" hint="get user details">
 			<cfargument name="user_id" type="numeric" required="yes" hint="user ID" >
 			<cfquery name="user">
-				SELECT user_id, user_login, user_password, user_firstname, user_lastname, user_email, role_id, user_default_project_id, image_file
+				SELECT user_id, user_login, user_password, user_firstname, user_lastname, user_email, role_id, image_file
 				FROM users
 				WHERE user_id=#ARGUMENTS.user_id#
 			</cfquery>	 
@@ -31,19 +31,19 @@
 			<cfargument name="user_lastname" type="string" required="yes" hint="user last name">
 			<cfargument name="user_email" type="string" required="yes" hint="user email">	
 			<cfargument name="role_id" type="numeric" required="yes" hint="user role ID">
-			<cfargument name="user_default_project_id" type="numeric" required="yes" hint="user def proj ID">
+			<!--- <cfargument name="user_default_project_id" type="numeric" required="yes" hint="user def proj ID">--->
 			
 			
 			<!---insert user --->
 			<cfquery>
-				INSERT INTO users(user_login, user_password, user_firstname, user_lastname, user_email, role_id, user_default_project_id)
+				INSERT INTO users(user_login, user_password, user_firstname, user_lastname, user_email, role_id)
 				VALUES('#Trim(ARGUMENTS.user_login)#',
 						'#Trim(ARGUMENTS.user_password)#',
 						'#Trim(ARGUMENTS.user_firstname)#',
 						'#Trim(ARGUMENTS.user_lastname)#',
 						'#Trim(ARGUMENTS.user_email)#',
-						#ARGUMENTS.role_id#,
-						#ARGUMENTS.user_default_project_id#
+						#ARGUMENTS.role_id#
+						<!--- #ARGUMENTS.user_default_project_id#--->
 				)
 			</cfquery>	
 			<cfreturn true>
