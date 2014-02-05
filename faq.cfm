@@ -9,6 +9,11 @@
 <!--- This should be abstracted better. --->
 <cfif session.auth.role_id eq 2>
 	<cfset canEdit = true>
+	<cfif structKeyExists(url, "delete_faq")>
+		<cfset application.faqService.deleteFaq(url.delete_faq)>
+		<cflocation url="faq.cfm?project_id=#url.project_id#" addToken="false">
+	</cfif>
+
 	<cfset faqs = application.faqService.getQuestions(url.project_id)>
 <cfelse>
 	<cfset canEdit = false>
@@ -49,6 +54,7 @@
 				<cfif canEdit>
 					<p>
 					<a class="btn btn-xs btn-primary" href="faq_edit.cfm?faq_id=#faq_id#">Edit</a>
+					<a class="btn btn-xs btn-danger" href="faq.cfm?delete_faq=#faq_id#&project_id=#url.project_id#">Delete</a>
 					</p>
 				</cfif>
 			</div>

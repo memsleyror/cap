@@ -15,6 +15,14 @@ component {
 
 	}
 
+	//Note per request this does a REAL delete
+	public void function deleteFaq(required faq_id) {
+		var q = new com.adobe.coldfusion.query();
+		q.setSQL("delete from faq where faq_id = :faq_id");	
+		q.addParam(name="faq_id", value=arguments.faq_id,cfsqltype="cf_sql_integer");
+		q.execute();
+	}
+
 	public struct function getFaq(required faqidfk) {
 
 		var q = new com.adobe.coldfusion.query();
