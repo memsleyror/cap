@@ -52,6 +52,24 @@
 	 		</cfquery>	 
 			<cfreturn mymood>	
 		</cffunction>	
+		
+		<!--- get avg mood score for a project --->
+			
+		<cffunction name="getavgmood" returntype="query" hint="get avg mood">
+			<cfquery name="avgmood">	
+				SELECT 
+			        `projects`.`project_id` AS `project_id`,
+			        avg(`mood`.`mood_score`) AS `AVG(mood.mood_score)`
+			    FROM
+			        (((`userproject`
+			        INNER JOIN `projects` ON ((`userproject`.`project_id` = `projects`.`project_id`)))
+			        INNER JOIN `userprojectmood` ON ((`userproject`.`userproject_id` = `userprojectmood`.`userproject_id`)))
+			        INNER JOIN `mood` ON ((`userprojectmood`.`mood_id` = `mood`.`mood_id`)))
+		        WHERE project_id=#ARGUMENTS.project_id#
+		        
+			</cfquery>	 
+			<cfreturn avgmood>
+		</cffunction>		
 
 		<!---add a project --->
 		<cffunction name="add" returntype="boolean" hint="add a project">
