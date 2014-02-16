@@ -59,13 +59,13 @@
 			<cfquery name="avgmood">	
 				SELECT 
 			        `projects`.`project_id` AS `project_id`,
-			        avg(`mood`.`mood_score`) AS `AVG(mood.mood_score)`
+			        avg(`mood`.`mood_score`) AS `AVG_MOOD`
 			    FROM
 			        (((`userproject`
 			        INNER JOIN `projects` ON ((`userproject`.`project_id` = `projects`.`project_id`)))
 			        INNER JOIN `userprojectmood` ON ((`userproject`.`userproject_id` = `userprojectmood`.`userproject_id`)))
 			        INNER JOIN `mood` ON ((`userprojectmood`.`mood_id` = `mood`.`mood_id`)))
-		        WHERE project_id=#ARGUMENTS.project_id#
+		        WHERE projects.project_id=#ARGUMENTS.project_id#
 		        
 			</cfquery>	 
 			<cfreturn avgmood>

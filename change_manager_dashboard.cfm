@@ -26,6 +26,12 @@
 	<!---save info to variables --->
 	<cfset caseforchange_text=Trim(projectcaseforchange.caseforchange_text)>
 	
+<!---get average mood score --->	
+	<cfinvoke component="projects" method="getavgmood" project_id="#session.proj.project_id#" returnvariable="avgmood">
+	
+		<!---save info to variables --->
+		<cfset avgmoodscore=avgmood.AVG(mood.mood_score)>
+	
 	
 <!---get moods --->
 <cfinvoke component="projects" method="getMoods" returnvariable="moods"> 	
@@ -494,8 +500,11 @@ $(document).ready(function() {
 												<span class="infobox-data-number">32</span>
 												<div class="infobox-content">questions</div>
 											</div>
-											<div class="stat stat-success">8%</div>
-										</div>
+											
+											<cfoutput>
+												<div class="stat stat-success">#avgmoodscore#</div>
+												</div>
+											</cfoutput>
 
 										<div class="infobox infobox-blue  ">
 											<div class="infobox-icon">
