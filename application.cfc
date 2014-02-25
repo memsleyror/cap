@@ -14,9 +14,10 @@
 		<cfset application.faqService = createObject("component", "model.faqservice")>
 		<cfset application.taskService = createObject("component", "model.taskservice")>
 		<cfset application.utils = createObject("component", "model.utils")>
-		<!---
 		<cfset application.userService = createObject("component", "model.userservice")>
-		--->
+
+		<cfset application.taskService.setUserService(application.userService)>
+		
 		<cfreturn true>
 	</cffunction>
 

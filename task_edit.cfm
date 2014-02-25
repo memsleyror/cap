@@ -9,6 +9,7 @@
 	
 	<!---get the task record --->
 	<cfinvoke component="#application.taskService#" method="get" task_id="#URL.task_id#" returnvariable="task">
+	<cfset user = application.userService.getUser(task.user_id)>
 
 	<!---save to variables --->
 	<cfset task_desc=Trim(task.task_desc)>
@@ -16,7 +17,6 @@
 	<cfset task_end_date=DateFormat(task.task_end_date,"MM/DD/YYYY")>
 	<cfset tasktype_id=task.tasktype_id>
 	<cfset project_id=task.project_id>
-	<cfset selectedRoles = task.roles>
 	
 	<!---form text --->
 	<cfset FormTitle="Update task">
@@ -86,22 +86,28 @@
 </tr>	
 
 <tr>
-	<td><label> Project </label>
+	<td><label> Project </label></td>
 	<td><cfselect name="project_id" class="form-control" query="projects" value="project_id" display="project_name" selected="#VARIABLES.project_id#"></cfselect></td>
 </tr>
 
 <tr>
-	<td><label> Task Start Date </label>
+	<td><label> Task Start Date </label></td>
 	<td><cfinput type="text" name="task_start_date" value="#task_start_date#" id="form-field-3" message="start date is required" required="yes" validate="date" validateAt="onSubmit,onServer" placeholder="mm/dd/yyyy"  /></td>
 </tr>
 <tr>
-	<td><label> Task End Date </label>
+	<td><label> Task End Date </label></td>
 	<td><cfinput type="text" name="task_end_date" value="#task_end_date#" id="form-field-4" message="end date is required" required="yes" validate="date" validateAt="onSubmit,onServer" placeholder="mm/dd/yyyy"  /></td>
 </tr>
 <tr>
-	<td><label> Task Type </label>
+	<td><label> Task Type </label></td>
 	<td><cfselect name="tasktype_id" class="form-control" query="tasktypes" value="tasktype_id" display="tasktype" selected="#VARIABLES.tasktype_id#"></cfselect></td>
 </tr>	
+<cfif EditMode>
+	<tr>
+		<td><label>User</label></td>
+		<td><cfoutput>#user.user_login#</cfoutput></td>
+	</tr>
+<cfelse>
 <tr>
 	<td><label>Roles</label></td>
 	<td>
@@ -113,6 +119,7 @@
 		</cfloop>
 	</td>
 </tr>
+</cfif>
 </table>
 </fieldset>
 
