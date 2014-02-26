@@ -8,8 +8,8 @@
 
 		<cfquery name="tasks">
 		select t.task_id, t.task_desc, t.task_start_date, t.task_end_date, 
-		t.project_id, t.completed, t.date_completed, u.user_login
-		from users_tasks t left join users u on t.user_id = u.user_id
+		t.project_id 
+		from tasks t
 		</cfquery>
 
 		<cfreturn tasks>	 
@@ -23,8 +23,8 @@
 		<cfset var result = structNew()>
 
 		<cfquery name="task">
-			SELECT task_id, task_desc, project_id, task_start_date, task_end_date, tasktype_id, completed, user_id
-			FROM users_tasks
+			SELECT task_id, task_desc, project_id, task_start_date, task_end_date, tasktype_id
+			FROM tasks
 			WHERE task_id=<cfqueryparam cfsqltype="cf_sql_integer" value="#ARGUMENTS.task_id#">
 		</cfquery>	 
 
@@ -34,8 +34,6 @@
 		<cfset result.task_start_date = task.task_start_date>
 		<cfset result.task_end_date = task.task_end_date>
 		<cfset result.tasktype_id = task.tasktype_id>
-		<cfset result.completed = task.completed>
-		<cfset result.user_id = task.user_id>
 
 		<cfreturn result>
 	</cffunction>
@@ -95,12 +93,13 @@
 
 		<cfquery name="q">
 			select t.task_id, t.task_desc, t.task_start_date, t.task_end_date,  
-			ifnull(t.completed,0) as completed, tt.tasktype, tt.tasktype_label, 
-			t.date_completed
-			from users_tasks t left join tasktype tt on t.tasktype_id = tt.tasktype_id
+			ifnull(ut.completed,0) as completed, tt.tasktype, tt.tasktype_label, 
+			ut.date_completed
+			from tasks t left join users_tasks ut on t.task_id = ut.task_id
+			left join tasktype tt on t.tasktype_id = tt.tasktype_id
 			where 
 			t.project_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.project#">
-			and t.user_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.user#">
+			and ut.user_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.user#">
 		</cfquery>
 		<cfloop query="q">
 			<cfset task = { id=task_id, 
@@ -130,19 +129,26 @@
 		<cfargument name="tasktype_id" type="numeric" required="yes" hint="tasktype ID">
 		<cfset var result = "">
 
+		<cfquery result="result">
+		insert into tasks(task_desc, project_id, task_start_date, task_end_date, tasktype_id)
+		values(
+			<cfqueryparam cfsqltype="cf_sql_varchar" value="#Trim(ARGUMENTS.task_desc)#">,
+			<cfqueryparam cfsqltype="cf_sql_integer" value="#ARGUMENTS.project_id#">,
+			<cfqueryparam cfsqltype="cf_sql_timestamp" value="#CreateODBCDate(ARGUMENTS.task_start_date)#">,
+			<cfqueryparam cfsqltype="cf_sql_timestamp" value="#CreateODBCDate(ARGUMENTS.task_end_date)#">,
+			<cfqueryparam cfsqltype="cf_sql_integer" value="#ARGUMENTS.tasktype_id#">
+		)
+		</cfquery>
+
 		<!--- updated 2/24/2014 to support adding N tasks per user based on role --->
 		<cfloop index="role" list="#arguments.roles#">
 			<cfset var users = getUserService().getUsersForRole(role)>
 			<cfloop query="users">
 				<cfquery>
-					INSERT INTO users_tasks(user_id,task_desc, project_id, task_start_date, task_end_date, tasktype_id)
+					INSERT INTO users_tasks(user_id,task_id)
 					VALUES(
 						<cfqueryparam cfsqltype="cf_sql_integer" value="#user_id#">,
-						<cfqueryparam cfsqltype="cf_sql_varchar" value="#Trim(ARGUMENTS.task_desc)#">,
-						<cfqueryparam cfsqltype="cf_sql_integer" value="#ARGUMENTS.project_id#">,
-						<cfqueryparam cfsqltype="cf_sql_timestamp" value="#CreateODBCDate(ARGUMENTS.task_start_date)#">,
-						<cfqueryparam cfsqltype="cf_sql_timestamp" value="#CreateODBCDate(ARGUMENTS.task_end_date)#">,
-						<cfqueryparam cfsqltype="cf_sql_integer" value="#ARGUMENTS.tasktype_id#">
+						<cfqueryparam cfsqltype="cf_sql_integer" value="#result.generatedkey#">
 					)
 				</cfquery>	
 			</cfloop>
@@ -151,6 +157,20 @@
 		<cfreturn true>
 	</cffunction>	
 		
+	<cffunction name="markComplete" hint="Updates a task for a user." output="false">
+		<cfargument name="task_id" type="numeric" required="yes" hint="task ID">
+		<cfargument name="user_id" type="numeric" required="yes" hint="user ID">
+
+		<cfset var result = "">
+		<cfquery name="result">
+		update users_tasks
+		set completed = 1,
+		date_completed = <cfqueryparam cfsqltype="cf_sql_timestamp" value="#now()#">
+		where task_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.task_id#">
+		and user_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.user_id#">
+		</cfquery>
+	</cffunction>
+
 	<cffunction name="update" returntype="boolean" hint="update a task" output="false">
 		<!---method arguments --->
 		<cfargument name="task_id" type="numeric" required="yes" hint="task ID">
@@ -159,20 +179,20 @@
 		<cfargument name="task_start_date" type="date" required="yes" hint="task start date">
 		<cfargument name="task_end_date" type="date" required="yes" hint="task end date">
 		<cfargument name="tasktype_id" type="numeric" required="yes" hint="tasktype ID">
-		<cfargument name="completed" type="boolean" required="no" hint="Completed status">
 
-		<!---note we aren't allowing you to change the user --->
 		<cfquery>
-			UPDATE users_tasks
+			UPDATE tasks
 			SET task_desc=<cfqueryparam cfsqltype="cf_sql_varchar" value="#Trim(ARGUMENTS.task_desc)#">,
 				project_id=<cfqueryparam cfsqltype="cf_sql_integer" value="#ARGUMENTS.project_id#">,
 				task_start_date=<cfqueryparam cfsqltype="cf_sql_timestamp" value="#CreateODBCDate(ARGUMENTS.task_start_date)#">,
 				task_end_date=<cfqueryparam cfsqltype="cf_sql_timestamp" value="#CreateODBCDate(ARGUMENTS.task_end_date)#">,
 				tasktype_id=<cfqueryparam cfsqltype="cf_sql_integer" value="#ARGUMENTS.tasktype_id#">
+				<!---
 				<cfif structKeyExists(arguments,"completed")>
 					,completed=<cfqueryparam cfsqltype="cf_sql_boolean" value="#ARGUMENTS.completed?1:0#">
 					,date_completed=curdate()
 				</cfif>
+				--->
 			WHERE task_id=<cfqueryparam cfsqltype="cf_sql_integer" value="#ARGUMENTS.task_id#">
 		</cfquery>	
 
@@ -182,6 +202,11 @@
 	<!---delete a task --->
 	<cffunction name="delete" returntype="boolean" hint="delete a task" output="false">
 		<cfargument name="task_id" type="numeric" required="yes" hint="task ID" >
+
+		<cfquery>
+			DELETE FROM tasks
+			WHERE task_id=<cfqueryparam cfsqltype="cf_sql_integer" value="#ARGUMENTS.task_id#">
+		</cfquery> 
 
 		<cfquery>
 			DELETE FROM users_tasks

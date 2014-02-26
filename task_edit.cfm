@@ -9,7 +9,6 @@
 	
 	<!---get the task record --->
 	<cfinvoke component="#application.taskService#" method="get" task_id="#URL.task_id#" returnvariable="task">
-	<cfset user = application.userService.getUser(task.user_id)>
 
 	<!---save to variables --->
 	<cfset task_desc=Trim(task.task_desc)>
@@ -103,10 +102,10 @@
 	<td><cfselect name="tasktype_id" class="form-control" query="tasktypes" value="tasktype_id" display="tasktype" selected="#VARIABLES.tasktype_id#"></cfselect></td>
 </tr>	
 <cfif EditMode>
-	<tr>
-		<td><label>User</label></td>
-		<td><cfoutput>#user.user_login#</cfoutput></td>
-	</tr>
+	<!---
+	empty clause now based on multiple mods i made - not convinced
+	i won't need this clause so i left it in
+	--->
 <cfelse>
 <tr>
 	<td><label>Roles</label></td>

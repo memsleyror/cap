@@ -1,5 +1,7 @@
 component {
 
+	url.returnformat="json";
+
 	/*
 	Remote proxy to allow for complete/not complete setting of a task. Requires login
 	*/
@@ -13,7 +15,7 @@ component {
 			return 0;
 		}
 		t.completed = arguments.complete;
-		application.taskService.update(argumentCollection=t);
+		application.taskService.markComplete(t.task_id, session.auth.user_id);
 		return 1;
 	}
 

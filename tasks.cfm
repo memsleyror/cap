@@ -36,7 +36,6 @@
 						<thead>
 							<tr>
 								<th>Task</th>
-								<th>User</th>
 								<th>Action</th>
 							</tr>
 						</thead>
@@ -45,7 +44,6 @@
 							<cfoutput query="tasks">
 							<tr>
 								<td>#task_desc#</td>
-								<td>#user_login#</td>
 								<td>
 									<div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
 
