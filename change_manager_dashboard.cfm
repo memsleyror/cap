@@ -30,7 +30,7 @@
 	<cfinvoke component="projects" method="getavgmood" project_id="#session.proj.project_id#" returnvariable="avgmood">
 	
 		<!---save info to variables --->
-		<cfset avgmoodscore=avgmood.AVG(mood.mood_score)>
+		<cfset avgmoodscore=avgmood.AVG_MOOD>	
 	
 	
 <!---get moods --->
@@ -46,7 +46,7 @@
 <cfset faqs = application.faqService.getAnsweredQuestions(session.proj.project_id)>
 
 <!--- get tasks based on role --->
-<cfset mytasks = application.taskService.getTasksByRoleProject(session.auth.role_id, session.proj.project_id)>
+<cfset mytasks = application.taskService.getTasksByUserProject(session.auth.user_id, session.proj.project_id)>
 
 <!---button caption --->
 <cfset ButtonText="Update">	
@@ -501,10 +501,12 @@ $(document).ready(function() {
 												<div class="infobox-content">questions</div>
 											</div>
 											
+											<!--- 
 											<cfoutput>
 												<div class="stat stat-success">#avgmoodscore#</div>
 												</div>
 											</cfoutput>
+											--->
 
 										<div class="infobox infobox-blue  ">
 											<div class="infobox-icon">
@@ -526,11 +528,13 @@ $(document).ready(function() {
 											<div class="infobox-icon">
 												<i class="icon-shopping-cart"></i>
 											</div>
-
+											
+											<cfoutput>
 											<div class="infobox-data">
-												<span class="infobox-data-number">8</span>
+												<span class="infobox-data-number">#avgmoodscore#</span>
 												<div class="infobox-content">new tasks</div>
 											</div>
+											</cfoutput>
 											<div class="stat stat-important">4%</div>
 										</div>
 

@@ -60,7 +60,7 @@
 												<tbody>
 													<cfoutput query="myprojects">
 													<tr>
-														<td><a href="project_dashboard.cfm?project_id=#project_id#">#project_name#</a></td>
+														<td><a href="change_manager_dashboard.cfm?project_id=#project_id#">#project_name#</a></td>
 														
 														
 													</tr>
@@ -70,6 +70,29 @@
 								</table>
 						</div><!-- /.table-responsive -->
 						
+						<!---adding temp change manager view --->
+						<div class="table-responsive">
+								<table id="sample-table-1" class="table table-striped table-bordered table-hover">						
+
+												<thead>
+													<tr>
+														<th>Temp Change Manager Dashboard View</th>
+														
+													</tr>
+												</thead>
+												
+												<tbody>
+													<cfoutput query="myprojects">
+													<tr>
+														<td><a href="temp_chgmgr_dashboard.cfm?project_id=#project_id#">#project_name#</a></td>
+														
+														
+													</tr>
+													</cfoutput>
+												</tbody>		
+
+								</table>
+						</div><!-- /.table-responsive -->
 						
 				</div><!-- /span -->
 		</div><!-- /row -->

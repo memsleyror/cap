@@ -70,6 +70,46 @@
 			</cfquery>	 
 			<cfreturn avgmood>
 		</cffunction>		
+		
+		
+		<!--- get mood counts by mood for a project --->
+			
+		<cffunction name="getmoodcounts" returntype="query" hint="get mood counts">	
+			<cfquery name="moodcounts">	
+				SELECT 
+			        `projects`.`project_id` AS `project_id`,
+			        `mood`.`mood_name` AS `mood_name`,
+			        count(`mood`.`mood_name`) AS `MOOD_COUNT`
+    			FROM
+			        (((`projects`
+			        join `userproject` ON ((`projects`.`project_id` = `userproject`.`project_id`)))
+			        join `userprojectmood` ON ((`userproject`.`userproject_id` = `userprojectmood`.`userproject_id`)))
+			        join `mood` ON ((`userprojectmood`.`mood_id` = `mood`.`mood_id`)))
+    
+				
+				
+				 WHERE projects.project_id=#ARGUMENTS.project_id#
+				 GROUP BY `mood`.`mood_name`
+			</cfquery>
+			<cfreturn moodcounts>
+		</cffunction>
+				
+		<!--- get last 7 days FAQ for a project --->
+			<!---need to join to project --->
+		
+		<cffunction name="getlastweekfaqs" returntype="query" hint="get last week's faq">	
+			<cfquery name="lastweekfaqs">		
+				SELECT 
+		        `faq`.`question` AS `question`,
+		        `faq`.`datecreated` AS `datecreated`
+		    	FROM
+		        `faq`
+		    	WHERE
+		        ((curdate() - interval 7 day) <= `faq`.`datecreated`)
+			</cfquery>
+			<cfreturn lastweekfaqs>
+		</cffunction>
+
 
 		<!---add a project --->
 		<cffunction name="add" returntype="boolean" hint="add a project">
