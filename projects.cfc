@@ -58,7 +58,7 @@
 		<cffunction name="getavgmood" returntype="query" hint="get avg mood">
 			<cfquery name="avgmood">	
 				SELECT 
-			        `projects`.`project_id` AS `project_id`,
+		        `projects`.`project_id` AS `project_id`,
 			        avg(`mood`.`mood_score`) AS `AVG_MOOD`
 			    FROM
 			        (((`userproject`
@@ -95,21 +95,59 @@
 		</cffunction>
 				
 		<!--- get last 7 days FAQ for a project --->
-			<!---need to join to project --->
 		
 		<cffunction name="getlastweekfaqs" returntype="query" hint="get last week's faq">	
 			<cfquery name="lastweekfaqs">		
 				SELECT 
 		        `faq`.`question` AS `question`,
-		        `faq`.`datecreated` AS `datecreated`
-		    	FROM
-		        `faq`
+		        `faq`.`datecreated` AS `datecreated`,
+		        `projects`.`project_id` AS `project_id`
+		        FROM projects INNER JOIN faq ON projects.project_id = faq.projectidfk
 		    	WHERE
 		        ((curdate() - interval 7 day) <= `faq`.`datecreated`)
+		        AND
+		        projects.project_id=#ARGUMENTS.project_id#
 			</cfquery>
 			<cfreturn lastweekfaqs>
 		</cffunction>
 
+		<!--- unanswered FAQs for a project --->
+		
+		<cffunction name="getopenfaqs" returntype="query" hint="get open faqs">	
+			<cfquery name="openfaqs">		
+				SELECT faq.question, 
+					faq.answer, 
+					faq.datecreated, 
+					projects.project_id
+				FROM projects INNER JOIN faq ON projects.project_id = faq.projectidfk
+				WHERE isnull(`faq`.`answer`)
+		        AND
+		        projects.project_id=#ARGUMENTS.project_id#
+			</cfquery>
+			<cfreturn openfaqs>
+		</cffunction>
+		
+		<!--- task completion for a project --->
+		
+		<cffunction name="gettaskcompletion" returntype="query" hint="get task completion">	
+			<cfquery name="taskcompletion">		
+				SELECT 
+					tasks.project_id,
+					tasks.task_desc AS task_desc,
+					users_tasks.completed AS completed,
+					count(0) AS task_count
+				
+				FROM (users_tasks JOIN tasks ON((users_tasks.task_id = tasks.task_id))) 
+				WHERE tasks.project_id=#ARGUMENTS.project_id#
+				GROUP BY tasks.task_desc,users_tasks.completed
+				
+			</cfquery>
+			<cfreturn taskcompletion>
+		</cffunction>
+		
+		
+		
+		 
 
 		<!---add a project --->
 		<cffunction name="add" returntype="boolean" hint="add a project">

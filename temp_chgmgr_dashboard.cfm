@@ -15,6 +15,12 @@
 <!---get last week's faqs --->	
 	<cfinvoke component="projects" method="getlastweekfaqs" project_id="#session.proj.project_id#" returnvariable="lastweekfaqs">	
 	
+<!---get open faqs --->	
+	<cfinvoke component="projects" method="getopenfaqs" project_id="#session.proj.project_id#" returnvariable="openfaqs">		
+	
+<!---get task completion --->	
+	<cfinvoke component="projects" method="gettaskcompletion" project_id="#session.proj.project_id#" returnvariable="taskcompletion">		
+		
 
 <!--- INCLUDE HEADER                                                               --->
 <cfset session.menuTracker.menuTitle = "Home">
@@ -86,7 +92,7 @@
 					
 			</div><!-- /.table-responsive -->
 			
-			Last Week's FAQs - still need to join to specific project
+			Last Week's FAQs
 			<div class="table-responsive">
 					<table id="sample-table-1" class="table table-striped table-bordered table-hover">						
 
@@ -102,6 +108,57 @@
 							<tr>
 								<td>#question#</td>
 								<td>#datecreated#</td>
+							</tr>
+							</cfoutput>
+						</tbody>			
+
+					</table>
+					
+			</div><!-- /.table-responsive -->
+			
+			
+			Unanswered FAQs
+			<div class="table-responsive">
+					<table id="sample-table-1" class="table table-striped table-bordered table-hover">						
+
+						<thead>
+							<tr>
+								<th>Question</th>
+								<th>Date Created</th>
+							</tr>
+						</thead>
+												
+						<tbody>
+							<cfoutput query="openfaqs">
+							<tr>
+								<td>#question#</td>
+								<td>#datecreated#</td>
+							</tr>
+							</cfoutput>
+						</tbody>			
+
+					</table>
+					
+			</div><!-- /.table-responsive -->
+			
+			Task Completion
+			<div class="table-responsive">
+					<table id="sample-table-1" class="table table-striped table-bordered table-hover">						
+
+						<thead>
+							<tr>
+								<th>Task Description</th>
+								<th>Completed?</th>
+								<th>Count</th>
+							</tr>
+						</thead>
+												
+						<tbody>
+							<cfoutput query="taskcompletion">
+							<tr>
+								<td>#task_desc#</td>
+								<td>#completed#</td>
+								<td>#task_count#</td>
 							</tr>
 							</cfoutput>
 						</tbody>			
